@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>UVALive 3675 数位dp+二分 | 瀚清</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="将区间$[L,R]$内的所有整数按照其二进制表示中1 的数量从小到大排序。如果 1 的数量 相同，则按照数的大小排序。求这个序列中的第$K$个数。其中，负数使用补码来表示：一个负数的二进制表示与其相反数的二进制之和恰好等于$2^{32}$。">
+<meta name="keywords" content="二分,数位dp,UVALive">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UVALive 3675 数位dp+二分">
+<meta property="og:url" content="http://yoursite.com/2016/11/04/UVALive-3675-数位dp-二分/index.html">
+<meta property="og:site_name" content="瀚清">
+<meta property="og:description" content="将区间$[L,R]$内的所有整数按照其二进制表示中1 的数量从小到大排序。如果 1 的数量 相同，则按照数的大小排序。求这个序列中的第$K$个数。其中，负数使用补码来表示：一个负数的二进制表示与其相反数的二进制之和恰好等于$2^{32}$。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-11-04T05:11:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UVALive 3675 数位dp+二分">
+<meta name="twitter:description" content="将区间$[L,R]$内的所有整数按照其二进制表示中1 的数量从小到大排序。如果 1 的数量 相同，则按照数的大小排序。求这个序列中的第$K$个数。其中，负数使用补码来表示：一个负数的二进制表示与其相反数的二进制之和恰好等于$2^{32}$。">
+  
+    <link rel="alternate" href="/atom.xml" title="瀚清" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/fancybox/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <script src="/lib/jquery/dist/jquery.min.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  
+  
+  
+</head>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="wrapper">
+    <header id="header" class="clearfix">
+	<a id="logo" href="/" title="瀚清">瀚清</a>
+	
+	<nav id="nav-menu" class="clearfix">
+		<form id="search" method="post" action="./" role="search">
+			<input id="search-input" type="text" name="s" class="inputbox" value="搜索" onfocus="if (value =='搜索'){value =''}" onblur="if (value ==''){value='搜索'}">
+		</form>
+		<ul>
+      
+				
+        <li><a class="main-nav-link" href="/">主页</a></li>
+      
+				
+        <li><a class="main-nav-link" href="/archives">归档</a></li>
+      
+		</ul>
+	</nav>
+</header>
+    <section id="main" class="clearfix"><article class="post-detail">
+  <h1 class="post-title"><a href="/">UVALive 3675 数位dp+二分</a></h1>
+  <ul class="post-meta">
+  <li><i class="fa fa-user"></i> 作者 ramay7</li>
+  <li><i class="fa fa-calendar"></i> 日期 Nov 4</li>
+  <li><i class="fa fa-folder"></i> 分类
+  
+    <a class="article-category-link" href="/categories/ACM/">ACM</a>
+  
+  </li>
+</ul>
+  <div class="post-content">
+      
+      <p>&#x5C06;&#x533A;&#x95F4;$[L,R]$&#x5185;&#x7684;&#x6240;&#x6709;&#x6574;&#x6570;&#x6309;&#x7167;&#x5176;&#x4E8C;&#x8FDB;&#x5236;&#x8868;&#x793A;&#x4E2D;1 &#x7684;&#x6570;&#x91CF;&#x4ECE;&#x5C0F;&#x5230;&#x5927;&#x6392;&#x5E8F;&#x3002;&#x5982;&#x679C; 1 &#x7684;&#x6570;&#x91CF; &#x76F8;&#x540C;&#xFF0C;&#x5219;&#x6309;&#x7167;&#x6570;&#x7684;&#x5927;&#x5C0F;&#x6392;&#x5E8F;&#x3002;&#x6C42;&#x8FD9;&#x4E2A;&#x5E8F;&#x5217;&#x4E2D;&#x7684;&#x7B2C;$K$&#x4E2A;&#x6570;&#x3002;&#x5176;&#x4E2D;&#xFF0C;&#x8D1F;&#x6570;&#x4F7F;&#x7528;&#x8865;&#x7801;&#x6765;&#x8868;&#x793A;&#xFF1A;&#x4E00;&#x4E2A;&#x8D1F;&#x6570;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x8868;&#x793A;&#x4E0E;&#x5176;&#x76F8;&#x53CD;&#x6570;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x4E4B;&#x548C;&#x6070;&#x597D;&#x7B49;&#x4E8E;$2^{32}$&#x3002;<br><a id="more"></a></p>
+<p><a href="https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=245&amp;page=show_problem&amp;problem=1676" target="_blank" rel="noopener">UVALive 3675 Sorted bit sequence</a></p>
+<p>&#x6570;&#x636E;&#x89C4;&#x6A21;&#xFF1A;<br>$L * R &#x2265; 0&#xFF0C; -2^{31} &#x2264; L &#x2264; R &#x2264; 2^{31}-1 &#xFF0C;1 &#x2264; K &#x2264; min(R &#x2212; L + 1, 2 147 473 547)$&#x3002;</p>
+<p>&#x53C2;&#x8003;<a href="http://wenku.baidu.com/view/d2414ffe04a1b0717fd5dda8.html" target="_blank" rel="noopener">&#x8BBA;&#x6587;</a>&#x4E2D;&#x7684;&#x5206;&#x6790;&#x65B9;&#x6CD5;&#x3002;</p>
+<p>&#x9996;&#x5148;&#x6CE8;&#x610F;&#x5230;&#x4E00;&#x4E2A;&#x6761;&#x4EF6;$L*R\geq 0$&#x3002;</p>
+<p>&#x6211;&#x4EEC;&#x5148;&#x8003;&#x8651;$L$&#x548C;$R$&#x540C;&#x4E3A;&#x6B63;&#x6570;&#x7684;&#x60C5;&#x51B5;&#x3002;<br>&#x7531;&#x4E8E;&#x6392;&#x5E8F;&#x7684;&#x7B2C;&#x4E00;&#x5173;&#x952E;&#x5B57;&#x662F;1&#x7684;&#x6570;&#x91CF;&#xFF0C;&#x7B2C;&#x4E8C;&#x5173;&#x952E;&#x5B57;&#x662F;&#x6570;&#x7684;&#x5927;&#x5C0F;&#xFF0C;&#x56E0;&#x6B64;&#x6211;&#x4EEC;&#x5F88;&#x5BB9;&#x6613;&#x786E;&#x5B9A;&#x7B54;&#x6848;&#x4E2D;1&#x7684;&#x4E2A;&#x6570;&#xFF1A;&#x4F9D;&#x6B21;&#x7EDF;&#x8BA1;&#x533A;&#x95F4;$[L,R]$&#x5185;&#x4E8C;&#x8FDB;&#x5236;&#x8868;&#x793A;&#x4E2D;&#x542B;1&#x7684;&#x6570;&#x91CF;&#x4E3A; 0,1,2,&#x2026;&#x7684;&#x6570;&#xFF0C;&#x76F4;&#x5230;&#x7D2F;&#x52A0;&#x7684;&#x7B54;&#x6848;&#x8D85;&#x8FC7;$K$&#xFF0C;&#x5219;&#x5F53;&#x524D;&#x503C;&#x5C31;&#x662F;&#x7B54;&#x6848;&#x542B;1&#x7684;&#x4E2A;&#x6570;&#xFF0C;&#x5047;&#x8BBE;&#x662F;$s$&#x3002;&#x8FD9;&#x4E2A;&#x6570;&#x4F4D;dp&#x53EF;&#x4EE5;&#x89E3;&#x51B3;&#xFF0C;&#x679A;&#x4E3E;&#x9700;&#x8981;&#x7EDF;&#x8BA1;&#x7684;1&#x7684;&#x4E2A;&#x6570;&#xFF0C;dfs&#x3002;</p>
+<p>&#x540C;&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x4E5F;&#x6C42;&#x51FA;&#x4E86;&#x7B54;&#x6848;&#x662F;&#x7B2C;&#x51E0;&#x4E2A;$[L,R]$&#x4E2D;&#x542B;$s$&#x4E2A; 1 &#x7684;&#x6570;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x53EA;&#x9700;&#x4E8C;&#x5206;&#x7B54;&#x6848;&#xFF0C;&#x6C42;&#x51FA;$[L,ans]$ &#x4E2D;&#x542B;$s$&#x4E2A; 1 &#x7684;&#x6570;&#x7684;&#x4E2A;&#x6570;&#x8FDB;&#x884C;&#x5224;&#x65AD;&#x5373;&#x53EF;&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;$L&lt;0,R&lt;0$&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x6211;&#x662F;&#x628A;&#x533A;&#x95F4;&#x53D8;&#x4E3A;&#x6B63;&#x7684;&#x533A;&#x95F4;&#xFF0C;&#x6839;&#x636E;&#x4E00;&#x4E2A;&#x8D1F;&#x6570;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x8868;&#x793A;&#x4E0E;&#x5176;&#x76F8;&#x53CD;&#x6570;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x4E4B;&#x548C;&#x6070;&#x597D;&#x7B49;&#x4E8E;$2^{32}$&#xFF0C;&#x6700;&#x540E;&#x518D;&#x628A;&#x7ED3;&#x679C;&#x53D8;&#x56DE;&#x6765;&#x5C31;&#x597D;&#x4E86;&#x3002;</p>
+<p>&#x9700;&#x8981;&#x7279;&#x6B8A;&#x5904;&#x7406;$L=0&#x6216;&#x8005;R=0$&#x7684;&#x60C5;&#x51B5;&#x3002;</p>
+<p>&#x56E0;&#x4E3A;$L*R\geq 0$&#x4E86;&#xFF0C;&#x6240;&#x4EE5;&#x5B9E;&#x9645;&#x4E0A;&#x6700;&#x9EBB;&#x70E6;&#x7684;&#x8BA8;&#x8BBA;&#xFF1A;$L<0,r>0$&#x7684;&#x60C5;&#x51B5;&#x5DF2;&#x7ECF;&#x907F;&#x514D;&#x6389;&#x4E86;&#x3002;</0,r></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> ll base = <span class="number">1l</span>l &lt;&lt; <span class="number">32</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> T, digit[<span class="number">35</span>];</span><br><span class="line">ll L, R, K, LL, RR;</span><br><span class="line">ll dp[<span class="number">35</span>][<span class="number">35</span>][<span class="number">35</span>], cnt[<span class="number">4</span>][<span class="number">35</span>];</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> pos, <span class="keyword">int</span> pre, <span class="keyword">int</span> limit, <span class="keyword">int</span> sum)</span> </span>{</span><br><span class="line">	<span class="keyword">if</span> (pos == <span class="number">-1</span>) <span class="keyword">return</span> pre == sum;</span><br><span class="line">	<span class="keyword">if</span> (pre &gt; sum) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (!limit &amp;&amp; dp[pos][pre][sum] != <span class="number">-1</span>) <span class="keyword">return</span> dp[pos][pre][sum];</span><br><span class="line">	<span class="keyword">int</span> last = limit ? digit[pos] : <span class="number">1</span>;</span><br><span class="line">	ll ret = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= last; ++i) {</span><br><span class="line">		ret += dfs(pos - <span class="number">1</span>, pre + i, limit &amp;&amp; (i == last), sum);</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">if</span> (!limit) dp[pos][pre][sum] = ret;</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">solve</span><span class="params">(ll x, <span class="keyword">int</span> id, <span class="keyword">int</span> flag)</span> </span>{</span><br><span class="line">	<span class="built_in">memset</span>(digit, <span class="number">0</span>, <span class="keyword">sizeof</span> (digit));</span><br><span class="line">	<span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line"><span class="comment">//	printf(&quot;x = %lld\n&quot;, x);</span></span><br><span class="line">	<span class="keyword">while</span> (x) {</span><br><span class="line">		digit[len++] = x % <span class="number">2</span>;</span><br><span class="line">		x /= <span class="number">2</span>;</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">if</span> (flag != <span class="number">-1</span>) {</span><br><span class="line">		<span class="keyword">return</span> dfs(len - <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, flag);</span><br><span class="line">	}</span><br><span class="line">	<span class="built_in">memset</span>(cnt[id], <span class="number">0</span>, <span class="keyword">sizeof</span>(cnt[id]));</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">32</span>; ++i) { <span class="comment">// &#x522B;&#x5FD8;&#x4E86;32&#xFF01;</span></span><br><span class="line">		cnt[id][i] = dfs(len - <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, i); <span class="comment">// &#x679A;&#x4E3E;&#x6709;i&#x4E2A;1</span></span><br><span class="line"><span class="comment">//		printf(&quot;cnt[%d][%d] = %lld\n&quot;, id, i, cnt[id][i]);</span></span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">work</span><span class="params">(<span class="keyword">int</span> flag)</span> </span>{</span><br><span class="line">	solve(LL, <span class="number">0</span>, <span class="number">-1</span>);</span><br><span class="line">	solve(RR, <span class="number">1</span>, <span class="number">-1</span>);</span><br><span class="line">	ll prefix = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> goal;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">32</span>; ++i) { <span class="comment">// &#x522B;&#x5FD8;&#x4E86;32&#xFF01;</span></span><br><span class="line">		prefix += (cnt[<span class="number">1</span>][i] - cnt[<span class="number">0</span>][i]);</span><br><span class="line">		<span class="keyword">if</span> (prefix &gt;= K) {</span><br><span class="line">			prefix -= (cnt[<span class="number">1</span>][i] - cnt[<span class="number">0</span>][i]);</span><br><span class="line">			goal = i;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line"><span class="comment">//	printf(&quot;goal = %d\n&quot;, goal);</span></span><br><span class="line">	ll left = K - prefix + cnt[<span class="number">0</span>][goal];</span><br><span class="line">	ll high = RR, low = LL, mid;</span><br><span class="line">	<span class="keyword">while</span> (low &lt; high) {</span><br><span class="line">		mid = (<span class="number">1l</span>l * low + high) / <span class="number">2</span>;</span><br><span class="line">		ll tmp = solve(mid, <span class="number">-1</span>, goal);</span><br><span class="line">		<span class="keyword">if</span> (tmp &lt; left) low = mid + <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span> high = mid;</span><br><span class="line">	}</span><br><span class="line">	ll ans = high;</span><br><span class="line">	<span class="keyword">if</span> (flag) ans = -(base - high);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, ans);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">	<span class="built_in">memset</span>(dp, <span class="number">-1</span>, <span class="keyword">sizeof</span>(dp));</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;T);</span><br><span class="line">	<span class="keyword">while</span> (T--) { <span class="comment">// &#x6CE8;&#x610F;n * m &gt;= 0</span></span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%lld%lld%d&quot;</span>, &amp;L, &amp;R, &amp;K);</span><br><span class="line">		<span class="keyword">if</span> (L &lt; <span class="number">0</span> &amp;&amp; R &lt; <span class="number">0</span>) {</span><br><span class="line">			LL = base + L - <span class="number">1</span>, RR = base + R;</span><br><span class="line">			work(<span class="number">1</span>);</span><br><span class="line">		} <span class="keyword">else</span> <span class="keyword">if</span> (L &lt; <span class="number">0</span> &amp;&amp; R == <span class="number">0</span>) {</span><br><span class="line">			<span class="keyword">if</span> (K == <span class="number">1</span>) <span class="built_in">printf</span>(<span class="string">&quot;0\n&quot;</span>);</span><br><span class="line">			<span class="keyword">else</span> {</span><br><span class="line">				K--;</span><br><span class="line">				LL = base + L - <span class="number">1</span>, RR = base - <span class="number">1</span>;</span><br><span class="line">				work(<span class="number">1</span>);</span><br><span class="line">			}</span><br><span class="line">		} <span class="keyword">else</span> <span class="keyword">if</span> (L == <span class="number">0</span> &amp;&amp; R == <span class="number">0</span>) { <span class="comment">// K = 0</span></span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;0\n&quot;</span>);</span><br><span class="line">		} <span class="keyword">else</span> <span class="keyword">if</span> (L == <span class="number">0</span> &amp;&amp; R &gt; <span class="number">0</span>) {</span><br><span class="line">			<span class="keyword">if</span> (K == <span class="number">1</span>) <span class="built_in">printf</span>(<span class="string">&quot;0\n&quot;</span>);</span><br><span class="line">			<span class="keyword">else</span> {</span><br><span class="line">				K--;</span><br><span class="line">				LL = <span class="number">0</span>, RR = R;</span><br><span class="line">				work(<span class="number">0</span>);</span><br><span class="line">			}</span><br><span class="line">		} <span class="keyword">else</span> { <span class="comment">// L &gt; 0 &amp;&amp; R &gt; 0</span></span><br><span class="line">			LL = L - <span class="number">1</span>, RR = R;</span><br><span class="line">			work(<span class="number">0</span>);</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+  </div>
+  
+    <div class="tags">
+    <span><i class="fa fa-tags"></i> 标签</span>
+      
+        <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/UVALive/">UVALive</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/二分/">二分</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/数位dp/">数位dp</a></li></ul>
+      
+    </div>
+  
+
+</article>
+
+<!-- Comments -->
+
+<!-- End Comments --></section>
+    <footer id="footer" role="contentinfo">
+    <div>&copy; 2018 <a href="/">瀚清</a>.
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Designed by <a href="http://rainylog.com" target="_blank">Rainy.</a>
+	</div>
+</footer><!-- end #footer -->
+
+  </div>
+  <script src="/lib/fancybox/dist/jquery.fancybox.min.js"></script>
+
+  <script src="/js/helper.js"></script>
+  <script src="/js/_third-party/gitment.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

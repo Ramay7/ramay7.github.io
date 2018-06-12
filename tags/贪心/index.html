@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>tag: 贪心 | 瀚清</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="瀚清">
+<meta property="og:url" content="http://yoursite.com/tags/贪心/index.html">
+<meta property="og:site_name" content="瀚清">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="瀚清">
+  
+    <link rel="alternate" href="/atom.xml" title="瀚清" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/fancybox/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <script src="/lib/jquery/dist/jquery.min.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  
+  
+  
+</head>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="wrapper">
+    <header id="header" class="clearfix">
+	<a id="logo" href="/" title="瀚清">瀚清</a>
+	
+	<nav id="nav-menu" class="clearfix">
+		<form id="search" method="post" action="./" role="search">
+			<input id="search-input" type="text" name="s" class="inputbox" value="搜索" onfocus="if (value =='搜索'){value =''}" onblur="if (value ==''){value='搜索'}">
+		</form>
+		<ul>
+      
+				
+        <li><a class="main-nav-link" href="/">主页</a></li>
+      
+				
+        <li><a class="main-nav-link" href="/archives">归档</a></li>
+      
+		</ul>
+	</nav>
+</header>
+    <section id="main" class="clearfix">
+  <article class="post-detail">
+    <h1 class="post-title"><a href="/">hihoCoder 1384 2016北京网赛B 倍增、贪心</a></h1>
+    <ul class="post-meta">
+  <li><i class="fa fa-user"></i> 作者 ramay7</li>
+  <li><i class="fa fa-calendar"></i> 日期 Nov 4</li>
+  <li><i class="fa fa-folder"></i> 分类
+  
+    <a class="article-category-link" href="/categories/思无涯/">思无涯</a>
+  
+  </li>
+</ul>
+    <div class="post-content">
+      <p>&#x7ED9;&#x51FA;$n\leq 3*10^5$&#x4E2A;&#x6570;$p_1,p_2,&#x2026;,p_n(p_{i}\leq 2^{20})$, &#x8981;&#x628A;&#x8FD9;$n$&#x4E2A;&#x6570;&#x5212;&#x5206;&#x6210;&#x82E5;&#x5E72;&#x6BB5;(&#x6BCF;&#x6BB5;&#x90FD;&#x662F;&#x8FDE;&#x7EED;&#x7684;), &#x6BCF;&#x6BB5;&#x7684;&#x4EE3;&#x4EF7;&#x8FD9;&#x4E48;&#x8BA1;&#x7B97;: &#x4ECE;&#x6BCF;&#x6BB5;&#x4E2D;&#x9009;&#x51FA;$m$(&#x4E0D;&#x591F;$m$&#x5BF9;&#x7684;&#x8BDD;, &#x9009;&#x51FA;&#x6700;&#x591A;&#x7684;&#x5BF9;&#x6570;)&#x5BF9;&#x6570;,&#x8BA1;&#x7B97;&#x6BCF;&#x5BF9;&#x6570;&#x4E4B;&#x95F4;&#x7684;&#x5DEE;&#x503C;,&#xFF0C;&#x7136;&#x540E;&#x6C42;&#x5E73;&#x65B9;&#x548C;&#xFF0C;&#x4EE3;&#x4EF7;&#x662F;&#x6240;&#x6709;&#x9009;&#x6CD5;&#x7684;&#x5E73;&#x65B9;&#x548C;&#x7684;&#x6700;&#x5927;&#x503C;&#xFF0C;&#x8BB0;&#x4E3A;$SPD$&#x3002;&#x6C42;&#x6700;&#x5C11;&#x7684;&#x5212;&#x5206;&#x6BB5;&#x6570;&#xFF0C;&#xFF0C;&#x4F7F;&#x5F97;&#x6BCF;&#x6BB5;&#x7684;SPDSPD&#x90FD;&#x4E0D;&#x5927;&#x4E8E;$K\leq 10^{18}$&#x3002;<br><a id="more"></a><br>&#x53C2;&#x8003;<a href="https://async.icpc-camp.org/d/565-2016-icpc" target="_blank" rel="noopener">Camp&#x7684;&#x9898;&#x89E3;</a>&#xFF1A;<br>&#x5BF9;&#x4E8E;&#x56FA;&#x5B9A;&#x7684;&#x4E00;&#x6BB5;&#x6570;&#xFF0C;&#x663E;&#x7136;&#x6392;&#x5E8F;&#x540E;&#x4ECE;&#x4E24;&#x8FB9;&#x4E00;&#x5BF9;&#x4E00;&#x5BF9;&#x5339;&#x914D;&#x80FD;&#x8BA9;&#x4EE3;&#x4EF7;&#x6700;&#x5927;&#xFF0C;&#x8BBE;$w(l,r)$&#x4E3A;$[l,r]$&#x8FD9;&#x6BB5;&#x533A;&#x95F4;&#x7684;&#x4EE3;&#x4EF7;&#xFF0C;&#x663E;&#x7136;&#x6709;$w(l+1,r) \le w(l, r), w(l , r - 1) \le w(l , r)$&#x3002;&#x6240;&#x4EE5;&#x53EF;&#x4EE5;&#x8D2A;&#x5FC3;&#x3002;<br>&#x56FA;&#x5B9A;&#x5DE6;&#x7AEF;&#x70B9;$l$&#x540E;&#x6BCF;&#x6B21;&#x9009;&#x6EE1;&#x8DB3;$w(l , r) \le K$&#x7684;&#x6700;&#x5927;&#x7684; $r$&#x3002;&#x95EE;&#x9898;&#x5C31;&#x662F;&#x600E;&#x4E48;&#x7B97;&#x8FD9;&#x4E2A;$r$&#xFF0C;&#x53EF;&#x4EE5;&#x5148;&#x8BA1;&#x7B97;&#x51FA;&#x6EE1;&#x8DB3;$w(l , l+2^k - 1) \le k$&#x7684;&#x6700;&#x5927;&#x7684;$k$&#xFF0C;&#x7136;&#x540E;&#x5728;$[l+2^k-1 , l+2^{k+1})$&#x8FD9;&#x4E2A;&#x533A;&#x95F4;&#x91CC;&#x4E8C;&#x5206;$r$&#x5373;&#x53EF;&#x3002;<br>&#x7B97;&#x4E00;&#x6B21;$w(l,r)$&#x66B4;&#x529B;&#x662F;$O(w \log w)$&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x4E0D;&#x96BE;&#x8BC1;&#x660E;&#x8FD9;&#x6837;&#x505A;&#x590D;&#x6742;&#x5EA6;&#x4E3A;$O(n \log^2 n)$&#x3002;</p>
+<p>&#x6280;&#x5DE7;&#x5904;&#x7406;&#xFF1A;&#x5728;$[low, high]$&#x533A;&#x95F4;&#x4E8C;&#x5206;&#x7B54;&#x6848;&#x65F6;&#xFF0C;&#x5148;&#x5C06;$[i, high]$&#x533A;&#x95F4;&#x6240;&#x6709;&#x6570;&#x6392;&#x5E8F;&#xFF0C;&#x6BCF;&#x6B21;&#x9A8C;&#x8BC1;$[i,x]$&#x662F;&#x5426;&#x53EF;&#x884C;&#x65F6;&#xFF0C;&#x5224;&#x65AD;&#x6570;&#x5B57;&#x7684;$id$&#x662F;&#x5426;&#x5C0F;&#x4E8E;&#x7B49;&#x4E8E;$x$&#x3002;</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX_N = <span class="number">500010</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> T, n, m;</span><br><span class="line">ll K, data[MAX_N];</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Store</span> {</span></span><br><span class="line">	ll data;</span><br><span class="line">	<span class="keyword">int</span> id;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> Store&amp; rhs) <span class="keyword">const</span> {</span><br><span class="line">		<span class="keyword">if</span> (data != rhs.data) <span class="keyword">return</span> data &lt; rhs.data;</span><br><span class="line">		<span class="keyword">return</span> id &lt; rhs.id;</span><br><span class="line">	}</span><br><span class="line">} store[MAX_N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">GetStore</span><span class="params">(<span class="keyword">int</span> st, <span class="keyword">int</span> ed)</span> </span>{</span><br><span class="line">	<span class="keyword">int</span> tot = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = st; i &lt;= ed; ++i) {</span><br><span class="line">		store[tot].data = data[i];</span><br><span class="line">		store[tot++].id = i;</span><br><span class="line">	}</span><br><span class="line">	sort(store, store + tot);</span><br><span class="line">	<span class="keyword">return</span> tot;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check1</span><span class="params">(<span class="keyword">int</span> st, <span class="keyword">int</span> ed)</span> </span>{</span><br><span class="line">	<span class="keyword">int</span> tot = GetStore(st, ed);</span><br><span class="line">	ll sum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>, j = tot - <span class="number">1</span>; i &lt; m &amp;&amp; i &lt; j; ++i, --j) {</span><br><span class="line">		ll tmp = store[j].data - store[i].data;</span><br><span class="line">		sum += tmp * tmp;</span><br><span class="line">		<span class="keyword">if</span> (sum &gt; K) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check2</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> tot)</span> </span>{</span><br><span class="line">	ll sum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>, j = tot - <span class="number">1</span>, cnt = <span class="number">0</span>; i &lt; j; ) {</span><br><span class="line">		<span class="keyword">while</span> (i &lt; j &amp;&amp; store[i].id &gt; x) ++i;</span><br><span class="line">		<span class="keyword">while</span> (i &lt; j &amp;&amp; store[j].id &gt; x) --j;</span><br><span class="line">		<span class="keyword">if</span> (i &gt;= j) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">		ll tmp = store[j].data - store[i].data;</span><br><span class="line">		sum += tmp * tmp;</span><br><span class="line">		++cnt, ++i, --j;</span><br><span class="line">		<span class="keyword">if</span> (sum &gt; K) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		<span class="keyword">if</span> (cnt == m) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span> </span>{</span><br><span class="line">	<span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>, last; i &lt;= n; i = last + <span class="number">1</span>) {</span><br><span class="line">		<span class="keyword">int</span> limit = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; i + (<span class="number">1</span> &lt;&lt; j) - <span class="number">1</span> &lt;= n; ++j) {</span><br><span class="line">			<span class="keyword">if</span> (!check1(i, i + (<span class="number">1</span> &lt;&lt; j) - <span class="number">1</span>)) <span class="keyword">break</span>;</span><br><span class="line">			limit = j;</span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">int</span> low = i + (<span class="number">1</span> &lt;&lt; (limit)) - <span class="number">1</span>, high = i + (<span class="number">1</span> &lt;&lt; (limit + <span class="number">1</span>)) - <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span> (high &gt; n) high = n;</span><br><span class="line">		<span class="keyword">int</span> tot = GetStore(i, high);</span><br><span class="line">		last = low;</span><br><span class="line">		<span class="keyword">while</span> (low &lt;= high) {</span><br><span class="line">			<span class="keyword">int</span> mid = (low + high) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">if</span> (check2(mid, tot)) low = mid + <span class="number">1</span>, last = mid;</span><br><span class="line">			<span class="keyword">else</span> high = mid - <span class="number">1</span>;</span><br><span class="line">		}</span><br><span class="line"><span class="comment">//		printf(&quot;i = %d last = %d\n&quot;, i, last);</span></span><br><span class="line">		ans++;</span><br><span class="line">	}</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, ans);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;T);</span><br><span class="line">	<span class="keyword">while</span> (T--) {</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%lld&quot;</span>, &amp;n, &amp;m, &amp;K);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) {</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>, &amp;data[i]);</span><br><span class="line">		}</span><br><span class="line">		solve();</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+    </div>
+  </article>
+
+
+</section>
+    <footer id="footer" role="contentinfo">
+    <div>&copy; 2018 <a href="/">瀚清</a>.
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Designed by <a href="http://rainylog.com" target="_blank">Rainy.</a>
+	</div>
+</footer><!-- end #footer -->
+
+  </div>
+  <script src="/lib/fancybox/dist/jquery.fancybox.min.js"></script>
+
+  <script src="/js/helper.js"></script>
+  <script src="/js/_third-party/gitment.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

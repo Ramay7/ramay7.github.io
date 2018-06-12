@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>普吕弗序列 | 瀚清</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在图论中，标号树的普吕弗序列是由树唯一地产生的序列。$n$顶点的标号树有长$n − 2$的普吕弗序列。">
+<meta name="keywords" content="ACM-ICPC-Template">
+<meta property="og:type" content="article">
+<meta property="og:title" content="普吕弗序列">
+<meta property="og:url" content="http://yoursite.com/2016/11/08/普吕弗序列/index.html">
+<meta property="og:site_name" content="瀚清">
+<meta property="og:description" content="在图论中，标号树的普吕弗序列是由树唯一地产生的序列。$n$顶点的标号树有长$n − 2$的普吕弗序列。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/images/prufer.png">
+<meta property="og:updated_time" content="2016-11-08T15:38:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="普吕弗序列">
+<meta name="twitter:description" content="在图论中，标号树的普吕弗序列是由树唯一地产生的序列。$n$顶点的标号树有长$n − 2$的普吕弗序列。">
+<meta name="twitter:image" content="http://yoursite.com/images/prufer.png">
+  
+    <link rel="alternate" href="/atom.xml" title="瀚清" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/fancybox/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <script src="/lib/jquery/dist/jquery.min.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  
+  
+  
+</head>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="wrapper">
+    <header id="header" class="clearfix">
+	<a id="logo" href="/" title="瀚清">瀚清</a>
+	
+	<nav id="nav-menu" class="clearfix">
+		<form id="search" method="post" action="./" role="search">
+			<input id="search-input" type="text" name="s" class="inputbox" value="搜索" onfocus="if (value =='搜索'){value =''}" onblur="if (value ==''){value='搜索'}">
+		</form>
+		<ul>
+      
+				
+        <li><a class="main-nav-link" href="/">主页</a></li>
+      
+				
+        <li><a class="main-nav-link" href="/archives">归档</a></li>
+      
+		</ul>
+	</nav>
+</header>
+    <section id="main" class="clearfix"><article class="post-detail">
+  <h1 class="post-title"><a href="/">普吕弗序列</a></h1>
+  <ul class="post-meta">
+  <li><i class="fa fa-user"></i> 作者 ramay7</li>
+  <li><i class="fa fa-calendar"></i> 日期 Nov 8</li>
+  <li><i class="fa fa-folder"></i> 分类
+  
+    <a class="article-category-link" href="/categories/齐东语/">齐东语</a>
+  
+  </li>
+</ul>
+  <div class="post-content">
+      
+      <p>&#x5728;&#x56FE;&#x8BBA;&#x4E2D;&#xFF0C;&#x6807;&#x53F7;&#x6811;&#x7684;&#x666E;&#x5415;&#x5F17;&#x5E8F;&#x5217;&#x662F;&#x7531;&#x6811;&#x552F;&#x4E00;&#x5730;&#x4EA7;&#x751F;&#x7684;&#x5E8F;&#x5217;&#x3002;$n$&#x9876;&#x70B9;&#x7684;&#x6807;&#x53F7;&#x6811;&#x6709;&#x957F;$n &#x2212; 2$&#x7684;&#x666E;&#x5415;&#x5F17;&#x5E8F;&#x5217;&#x3002;<br><a id="more"></a></p>
+<h4 id="&#x7531;&#x65E0;&#x6839;&#x6811;&#x751F;&#x6210;&#x666E;&#x5415;&#x5F17;&#x5E8F;&#x5217;"><a href="#&#x7531;&#x65E0;&#x6839;&#x6811;&#x751F;&#x6210;&#x666E;&#x5415;&#x5F17;&#x5E8F;&#x5217;" class="headerlink" title="&#x7531;&#x65E0;&#x6839;&#x6811;&#x751F;&#x6210;&#x666E;&#x5415;&#x5F17;&#x5E8F;&#x5217;"></a>&#x7531;&#x65E0;&#x6839;&#x6811;&#x751F;&#x6210;&#x666E;&#x5415;&#x5F17;&#x5E8F;&#x5217;</h4><p>&#x6BCF;&#x6B21;&#xFF08;&#x7B2C;$i$&#x6B21;&#xFF09;&#x53BB;&#x6389;&#x6811;&#x4E0A;&#x7F16;&#x53F7;&#x6700;&#x5C0F;&#x7684;&#x7684;&#x53F6;&#x5B50;&#x7ED3;&#x70B9;&#xFF0C;&#x5E76;&#x628A;&#x666E;&#x5415;&#x5F17;&#x5E8F;&#x5217;&#x7684;&#x7B2C;$i$&#x9879;&#x8BBE;&#x4E3A;&#x8FD9;&#x4E2A;&#x53F6;&#x5B50;&#x7684;&#x90BB;&#x9876;&#x70B9;&#x7684;&#x6807;&#x53F7;&#x3002;&#x4E00;&#x68F5;&#x6811;&#x7684;&#x666E;&#x5415;&#x5F17;&#x5E8F;&#x5217;&#x662F;&#x552F;&#x4E00;&#x7684;&#x3002;<br><img src="/images/prufer.png" alt="prufer"><br>&#x4E0A;&#x9762;&#x7684;&#x6811;&#x7ED3;&#x6784;&#x53EF;&#x5F97;&#x666E;&#x5415;&#x5F17;&#x5E8F;&#x5217;&#xFF1A;{4,4,4,5}&#x3002;</p>
+<h4 id="&#x4ECE;&#x666E;&#x5415;&#x5F17;&#x5E8F;&#x5217;&#x8FD8;&#x539F;&#x65E0;&#x6839;&#x6811;"><a href="#&#x4ECE;&#x666E;&#x5415;&#x5F17;&#x5E8F;&#x5217;&#x8FD8;&#x539F;&#x65E0;&#x6839;&#x6811;" class="headerlink" title="&#x4ECE;&#x666E;&#x5415;&#x5F17;&#x5E8F;&#x5217;&#x8FD8;&#x539F;&#x65E0;&#x6839;&#x6811;"></a>&#x4ECE;&#x666E;&#x5415;&#x5F17;&#x5E8F;&#x5217;&#x8FD8;&#x539F;&#x65E0;&#x6839;&#x6811;</h4><p>&#x8BBE;&#x8FD9;&#x666E;&#x5415;&#x5F17;&#x5E8F;&#x5217;&#x957F;$n &#x2212; 2$&#x3002;&#x9996;&#x5148;&#x5199;&#x51FA;&#x6570;1&#x81F3;$n$&#x3002;&#x7B2C;&#x4E00;&#x6B65;&#xFF0C;&#x627E;&#x51FA;1&#x81F3;$n$&#x4E2D;&#x6CA1;&#x6709;&#x5728;&#x5E8F;&#x5217;&#x4E2D;&#x51FA;&#x73B0;&#x7684;&#x6700;&#x5C0F;&#x6570;&#x3002;&#x628A;&#x6807;&#x53F7;&#x4E3A;&#x8FD9;&#x6570;&#x7684;&#x9876;&#x70B9;&#x548C;&#x6807;&#x53F7;&#x4E3A;&#x5E8F;&#x5217;&#x9996;&#x9879;&#x7684;&#x9876;&#x70B9;&#x8FDE;&#x8D77;&#x6765;&#xFF0C;&#x5E76;&#x628A;&#x8FD9;&#x6570;&#x4ECE;1&#x81F3;$n$&#x4E2D;&#x5220;&#x53BB;&#xFF0C;&#x5E8F;&#x5217;&#x7684;&#x9996;&#x9879;&#x4E5F;&#x5220;&#x53BB;&#x3002;&#x63A5;&#x7740;&#x6BCF;&#x4E00;&#x6B65;&#x4EE5;1&#x81F3;$n$&#x4E2D;&#x5269;&#x4E0B;&#x7684;&#x6570;&#x548C;&#x4F59;&#x4E0B;&#x5E8F;&#x5217;&#x91CD;&#x590D;&#x4EE5;&#x4E0A;&#x6B65;&#x9AA4;&#x3002;&#x6700;&#x540E;&#x5F53;&#x5E8F;&#x5217;&#x7528;&#x5B8C;&#xFF0C;&#x628A;1&#x81F3;n&#x4E2D;&#x6700;&#x540E;&#x5269;&#x4E0B;&#x7684;&#x4E24;&#x6570;&#x7684;&#x9876;&#x70B9;&#x8FDE;&#x8D77;&#x6765;&#x3002;</p>
+<h4 id="&#x7ED3;&#x8BBA;"><a href="#&#x7ED3;&#x8BBA;" class="headerlink" title="&#x7ED3;&#x8BBA;"></a>&#x7ED3;&#x8BBA;</h4><ul>
+<li>&#x4E00;&#x4E2A;&#x957F;&#x4E3A;$n&#x2212;2$&#x4E14;&#x6BCF;&#x9879;&#x90FD;&#x5728;1&#x81F3;$n$&#x4E4B;&#x95F4;&#x7684;&#x5E8F;&#x5217;$S$&#xFF0C;&#x6709;&#x552F;&#x4E00;&#x7684;&#x6807;&#x53F7;&#x6811;&#x4EE5;$S$&#x4E3A;&#x666E;&#x5415;&#x5F17;&#x5E8F;&#x5217;&#x3002;</li>
+<li>&#x957F;$n&#x2212;2$&#x7684;&#x5E8F;&#x5217;&#x5171;&#x6709;$n^{n&#x2212;2}$&#x4E2A;&#xFF0C;&#x4ECE;&#x800C;&#x8BC1;&#x660E;&#x51EF;&#x83B1;&#x516C;&#x5F0F;&#xFF1A;$n$&#x9876;&#x70B9;&#x7684;&#x6807;&#x53F7;&#x65E0;&#x6839;&#x6811;&#x5171;&#x6709;$n^{n&#x2212;2}$&#x68F5;&#x3002;</li>
+<li>&#x4E00;&#x68F5;&#x6807;&#x53F7;&#x6811;&#x5B9E;&#x9645;&#x4E0A;&#x662F;&#x6807;&#x53F7;&#x5B8C;&#x5168;&#x56FE;&#x7684;&#x4E00;&#x68F5;&#x751F;&#x6210;&#x6811;&#x3002;&#x5BF9;&#x666E;&#x5415;&#x5F17;&#x5E8F;&#x5217;&#x52A0;&#x4EE5;&#x9650;&#x5236;&#x3002;&#x7C7B;&#x4F3C;&#x7684;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x6807;&#x53F7;&#x5B8C;&#x5168;&#x4E8C;&#x5206;&#x56FE;&#x7684;&#x751F;&#x6210;&#x6811;&#x603B;&#x6570;&#x3002;&#x82E5;$G$&#x662F;&#x5B8C;&#x5168;&#x4E8C;&#x5206;&#x56FE;&#xFF0C;&#x4E00;&#x90E8;&#x5206;&#x7684;&#x9876;&#x70B9;&#x6807;&#x53F7;1&#x5230;$n_1$&#xFF0C;&#x53E6;&#x4E00;&#x90E8;&#x5206;&#x7684;&#x9876;&#x70B9;&#x6807;&#x53F7;$n_{1} + 1$&#x5230;$n$&#x3002;$G$&#x7684;&#x6807;&#x53F7;&#x751F;&#x6210;&#x6811;&#x603B;&#x6570;&#x4E3A;&#xFF0C;$n_{1}^{n_{2}-1}*n_{2}^{n_{1}-1}$&#x5176;&#x4E2D;$n_{2} = n &#x2212; n_1$&#x3002;</li>
+<li>&#x666E;&#x5415;&#x5F17;&#x5E8F;&#x5217;&#x4E2D;&#x67D0;&#x4E2A;&#x7F16;&#x53F7;$i$&#x51FA;&#x73B0;&#x7684;&#x6B21;&#x6570;$=d(i)-1,d(i)$&#x662F;&#x8FD9;&#x4E2A;&#x7F16;&#x53F7;&#x7684;&#x8282;&#x70B9;&#x5728;&#x65E0;&#x6839;&#x6811;&#x4E2D;&#x7684;&#x5EA6;&#x6570;</li>
+<li>$n$&#x4E2A;&#x8282;&#x70B9;&#x7684;&#x5EA6;&#x4F9D;&#x6B21;&#x4E3A;$d_1, d_2,\cdots , d_n$&#x7684;&#x65E0;&#x6839;&#x6811;&#x5171;&#x6709; $ \frac{(n-2)!} {[ (d_1-1)!*(d_2-1)!*\cdots *(d_n-1)! ] }$&#x4E2A;&#xFF0C;&#x56E0;&#x4E3A;&#x6B64;&#x65F6;$Pr&#xFC;fer$&#x7F16;&#x7801;&#x4E2D;&#x7684;&#x6570;&#x5B57;$i$&#x6070;&#x597D;&#x51FA;&#x73B0;$d_i-1$&#x6B21;&#x3002;</li>
+<li>$n$&#x4E2A;&#x8282;&#x70B9;&#x7684;&#x5EA6;&#x4F9D;&#x6B21;&#x4E3A;$d_1, d_2,\cdots , d_n$&#xFF0C;&#x53E6;&#x6709;$m$&#x4E2A;&#x8282;&#x70B9;&#x5EA6;&#x6570;&#x672A;&#x77E5;&#xFF0C;&#x6C42;&#x6709;&#x591A;&#x5C11;&#x79CD;&#x751F;&#x6210;&#x6811;&#xFF1F;[BZOJ1005 &#x660E;&#x660E;&#x7684;&#x70E6;&#x607C;]</li>
+</ul>
+<p>&#x4EE4;&#x6BCF;&#x4E2A;&#x5DF2;&#x77E5;&#x5EA6;&#x6570;&#x7684;&#x8282;&#x70B9;&#x7684;&#x5EA6;&#x6570;&#x4E3A;$d_i(i:1\sim k)$&#xFF0C;&#x6709;$n$&#x4E2A;&#x8282;&#x70B9;&#xFF0C;$m$&#x4E2A;&#x8282;&#x70B9;&#x672A;&#x77E5;&#x5EA6;&#x6570;&#xFF0C;$sum=\sum_{i=1}^{k}(d(i)-1)$&#x3002;<br>$$<br>Ans=C_{n-2}^{sum}*\frac{sum!}{\prod_{i=1}^{k}(d(i)-1)!}*(n-k)^{n-sum-2}<br>$$</p>
+<ul>
+<li>$n$&#x4E2A;&#x70B9;&#x7684;&#x6709;&#x6807;&#x53F7;&#x6709;&#x6839;&#x6811;&#x7684;&#x8BA1;&#x6570;&#xFF1A;$n^{n-2}*n = n^{n-1}$</li>
+</ul>
+<h4 id="bzoj1211"><a href="#BZOJ1211" class="headerlink" title="BZOJ1211"></a>BZOJ1211</h4><p>&#x7ED9;&#x5B9A;&#x4E00;&#x68F5;$n\leq 150$&#x4E2A;&#x7ED3;&#x70B9;&#x7684;&#x6811;&#x4E2D;&#x6240;&#x6709;&#x70B9;&#x7684;&#x5EA6;&#x6570;&#xFF0C;&#x6C42;&#x6709;&#x591A;&#x5C11;&#x79CD;&#x53EF;&#x80FD;&#x7684;&#x6811;&#xFF1F;</p>
+<p>&#x76F4;&#x63A5;&#x4E58;&#x4F1A;&#x7206;<code>long long</code>&#xFF0C;&#x6240;&#x4EE5;&#x5148;&#x628A;&#x6BCF;&#x4E2A;&#x6570;&#x5206;&#x89E3;&#x8D28;&#x56E0;&#x6570;&#xFF0C;&#x628A;&#x8D28;&#x56E0;&#x6570;&#x7684;&#x6B21;&#x6570;&#x76F8;&#x52A0;&#x76F8;&#x51CF;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x4E58;&#x8D77;&#x6765;&#x3002;&#x65E0;&#x89E3;&#x9700;&#x8981;&#x8F93;&#x51FA;0&#x3002;&#x5F53;<code>n!=1&amp;&amp;d[i]==0</code>&#x65F6;&#x6216;&#x8005;&#x5F53;$\sum(d[i]-1)!=n-2$&#x65F6;&#x65E0;&#x89E3;&#x3002;<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n, sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> num[<span class="number">200</span>];</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">Qpow</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>{</span><br><span class="line">    ll ret = <span class="number">1</span>, t = a;</span><br><span class="line">    <span class="keyword">while</span> (b) {</span><br><span class="line">        <span class="keyword">if</span> (b &amp; <span class="number">1</span>) ret *= t;</span><br><span class="line">        t *= t;</span><br><span class="line">        b &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> flag)</span> </span>{</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i * i &lt;= x; ++i) {</span><br><span class="line">        <span class="keyword">while</span> (x % i == <span class="number">0</span>) num[i] += flag, x /= i;</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">if</span> (x &gt; <span class="number">1</span>) num[x] += flag;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n - <span class="number">2</span>; ++i) update(i, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) {</span><br><span class="line">        <span class="keyword">int</span> d;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;d);</span><br><span class="line">        <span class="keyword">if</span> (d == <span class="number">0</span> &amp;&amp; n &gt; <span class="number">1</span>) {</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;0\n&quot;</span>); </span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        }</span><br><span class="line">        sum += d;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">2</span>; j &lt;= d - <span class="number">1</span>; ++j) update(j, <span class="number">-1</span>);</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">if</span> (sum != <span class="number">2</span> * n - <span class="number">2</span>) <span class="built_in">printf</span>(<span class="string">&quot;0\n&quot;</span>);</span><br><span class="line">    <span class="keyword">else</span> {</span><br><span class="line">        ll ans = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; ++i) {</span><br><span class="line">            <span class="keyword">if</span> (num[i]) ans *= Qpow(i, num[i]);</span><br><span class="line">        }</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, ans);</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure></p>
+<h4 id="hdu-5629"><a href="#HDU-5629" class="headerlink" title="HDU 5629"></a>HDU 5629</h4><p>&#x7ED9;$n\leq 50$&#x4E2A;&#x70B9;&#xFF0C;&#x6BCF;&#x4E2A;&#x7ED3;&#x70B9;&#x7684;&#x5EA6;&#x6570;&#x4E0D;&#x8D85;&#x8FC7;$a_i\in [1,n]$&#xFF0C;&#x6C42;&#x6784;&#x9020;&#x6811;&#x5927;&#x5C0F;&#xFF08;&#x7ED3;&#x70B9;&#x4E2A;&#x6570;&#xFF09;&#x4E3A;$s\in [1,n]$&#x7684;&#x65B9;&#x6848;&#x6570;&#xFF0C;&#x7B54;&#x6848;&#x5BF9;$1e9+7$&#x53D6;&#x6A21;&#x3002;</p>
+<p>&#x7528;$dp[i][j][k]$&#x8868;&#x793A;&#x5904;&#x7406;&#x5230;&#x7B2C;$i$&#x4E2A;&#x8282;&#x70B9;&#xFF0C;&#x4ECE;&#x4E2D;&#x9009;&#x62E9;$j$&#x4E2A;&#x8282;&#x70B9;&#xFF0C;&#x4E14;&#x53EF;&#x91CD;&#x96C6;&#x5927;&#x5C0F;(&#x666E;&#x5415;&#x5F17;&#x5E8F;&#x5217;&#x957F;&#x5EA6;)&#x4E3A;$k$&#x7684;&#x6392;&#x5217;&#x7EC4;&#x5408;&#x6570;&#x3002;&#x521D;&#x59CB;&#x5316;$dp[0][0][0]=1$&#xFF0C;&#x8003;&#x8651;&#x7528;$dp[i-1][j][k]$&#x6765;&#x66F4;&#x65B0;$dp[i][][]$&#x7684;&#x72B6;&#x6001;:&#x4E0D;&#x7528;&#x7B2C;$i$&#x4E2A;&#x7ED3;&#x70B9;&#x548C;&#x679A;&#x4E3E;&#x7B2C;$i$&#x4E2A;&#x7ED3;&#x70B9;&#x7684;&#x5EA6;&#x6570;&#x3002;&#x6EDA;&#x52A8;&#x6570;&#x7EC4;&#x5B9E;&#x73B0;&#x3002;</p>
+<p>&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#xFF1A;$O(n^4)$&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;$FFT$&#x4F18;&#x5316;&#x5230;$O(n^3\log n)$&#xFF0C;&#x4F46;&#x662F;&#x56E0;&#x4E3A;&#x5E38;&#x6570;&#x539F;&#x56E0;&#xFF0C;&#x5DEE;&#x522B;&#x4E0D;&#x5927;&#x3002;<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX_N = <span class="number">55</span>;</span><br><span class="line"><span class="keyword">const</span> ll mod = (ll)(<span class="number">1e9</span>) + <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> T, n;</span><br><span class="line"><span class="keyword">int</span> a[MAX_N];</span><br><span class="line">ll dp[<span class="number">2</span>][MAX_N][MAX_N], C[MAX_N][MAX_N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; MAX_N; ++i) {</span><br><span class="line">        C[i][<span class="number">0</span>] = C[i][i] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; i; ++j) {</span><br><span class="line">            C[i][j] = (C[i - <span class="number">1</span>][j] + C[i - <span class="number">1</span>][j - <span class="number">1</span>]) % mod;</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;T);</span><br><span class="line">    <span class="keyword">while</span> (T--) {</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;a[i]);</span><br><span class="line">        <span class="built_in">memset</span>(dp, <span class="number">0</span>, <span class="keyword">sizeof</span> (dp));</span><br><span class="line">        dp[<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> now = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) {</span><br><span class="line">            now ^= <span class="number">1</span>;</span><br><span class="line">            <span class="built_in">memset</span>(dp[now], <span class="number">0</span>, <span class="keyword">sizeof</span> (dp[now]));</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= i; ++j) {</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt;= n - <span class="number">2</span>; ++k) {</span><br><span class="line">                    dp[now][j][k] += dp[now ^ <span class="number">1</span>][j][k];</span><br><span class="line">                    <span class="keyword">if</span> (dp[now][j][k] &gt;= mod) dp[now][j][k] -= mod;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> p = <span class="number">1</span>; p &lt;= a[i] &amp;&amp; k + p - <span class="number">1</span> &lt;= n - <span class="number">2</span>; ++p) {</span><br><span class="line">                        dp[now][j + <span class="number">1</span>][p + k - <span class="number">1</span>] += dp[now ^ <span class="number">1</span>][j][k] * C[k + p - <span class="number">1</span>][p - <span class="number">1</span>] % mod;</span><br><span class="line">                        <span class="keyword">if</span> (dp[now][j + <span class="number">1</span>][p + k - <span class="number">1</span>] &gt;= mod) dp[now][j + <span class="number">1</span>][p + k - <span class="number">1</span>] -= mod;</span><br><span class="line">                    }</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, n);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">2</span>; j &lt;= n; ++j) <span class="built_in">printf</span>(<span class="string">&quot; %lld&quot;</span>, dp[now][j][j - <span class="number">2</span>]);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure></p>
+
+  </div>
+  
+    <div class="tags">
+    <span><i class="fa fa-tags"></i> 标签</span>
+      
+        <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/ACM-ICPC-Template/">ACM-ICPC-Template</a></li></ul>
+      
+    </div>
+  
+
+</article>
+
+<!-- Comments -->
+
+<!-- End Comments --></section>
+    <footer id="footer" role="contentinfo">
+    <div>&copy; 2018 <a href="/">瀚清</a>.
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Designed by <a href="http://rainylog.com" target="_blank">Rainy.</a>
+	</div>
+</footer><!-- end #footer -->
+
+  </div>
+  <script src="/lib/fancybox/dist/jquery.fancybox.min.js"></script>
+
+  <script src="/js/helper.js"></script>
+  <script src="/js/_third-party/gitment.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

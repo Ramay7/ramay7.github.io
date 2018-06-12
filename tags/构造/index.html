@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>tag: 构造 | 瀚清</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="瀚清">
+<meta property="og:url" content="http://yoursite.com/tags/构造/index.html">
+<meta property="og:site_name" content="瀚清">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="瀚清">
+  
+    <link rel="alternate" href="/atom.xml" title="瀚清" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/fancybox/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <script src="/lib/jquery/dist/jquery.min.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  
+  
+  
+</head>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="wrapper">
+    <header id="header" class="clearfix">
+	<a id="logo" href="/" title="瀚清">瀚清</a>
+	
+	<nav id="nav-menu" class="clearfix">
+		<form id="search" method="post" action="./" role="search">
+			<input id="search-input" type="text" name="s" class="inputbox" value="搜索" onfocus="if (value =='搜索'){value =''}" onblur="if (value ==''){value='搜索'}">
+		</form>
+		<ul>
+      
+				
+        <li><a class="main-nav-link" href="/">主页</a></li>
+      
+				
+        <li><a class="main-nav-link" href="/archives">归档</a></li>
+      
+		</ul>
+	</nav>
+</header>
+    <section id="main" class="clearfix">
+  <article class="post-detail">
+    <h1 class="post-title"><a href="/">Codeforces GYM101150G 已知叶子结点两两距离构造树</a></h1>
+    <ul class="post-meta">
+  <li><i class="fa fa-user"></i> 作者 ramay7</li>
+  <li><i class="fa fa-calendar"></i> 日期 Dec 2</li>
+  <li><i class="fa fa-folder"></i> 分类
+  
+    <a class="article-category-link" href="/categories/思无涯/">思无涯</a>
+  
+  </li>
+</ul>
+    <div class="post-content">
+      <p>&#x5DF2;&#x77E5;&#x4E00;&#x68F5;&#x6811;&#x7684;$n\leq 50$&#x4E2A;&#x53F6;&#x5B50;&#x7ED3;&#x70B9;&#x7684;&#x4E24;&#x4E24;&#x8DDD;&#x79BB;&#xFF0C;&#x6C42;&#x8FD9;&#x68F5;&#x6811;&#x4E0A;&#x6240;&#x6709;&#x975E;&#x53F6;&#x5B50;&#x7ED3;&#x70B9;&#x7684;&#x5EA6;&#xFF0C;&#x4ECE;&#x5C0F;&#x5230;&#x5927;&#x8F93;&#x51FA;&#x3002;<br><a id="more"></a><br>&#x9898;&#x76EE;&#x94FE;&#x63A5;&#xFF1A;<a href="http://codeforces.com/gym/101150" target="_blank" rel="noopener">Here</a><br>&#x4E5F;&#x662F;<a href="http://vjudge.net/problem/Aizu-1263" target="_blank" rel="noopener">Aizu 1263</a></p>
+<p>&#x5148;&#x627E;&#x5230;&#x6811;&#x76F4;&#x5F84;&#xFF1A;&#x8DDD;&#x79BB;&#x6700;&#x5927;&#x7684;&#x4E00;&#x5BF9;&#x53F6;&#x5B50;&#x7ED3;&#x70B9;&#xFF0C;&#x7136;&#x540E;&#x6240;&#x6709;&#x53F6;&#x5B50;&#x7ED3;&#x70B9;&#x5C31;&#x53EF;&#x4EE5;&#x6309;&#x7167;&#x8DDD;&#x79BB;&#x54EA;&#x4E2A;&#x76F4;&#x5F84;&#x7AEF;&#x70B9;&#x66F4;&#x8FD1;&#x5206;&#x6210;&#x4E24;&#x90E8;&#x5206;&#xFF0C;&#x63A5;&#x7740;&#x628A;&#x76F4;&#x5F84;&#x8FD9;&#x6761;&#x94FE;&#x4ECE;&#x6B63;&#x4E2D;&#x95F4;&#x90E8;&#x5206;&#x5206;&#x6210;&#x4E24;&#x6BB5;&#xFF0C;&#x9012;&#x5F52;&#x89E3;&#x51B3;&#x3002;&#x5206;&#x6210;&#x4E24;&#x6BB5;&#x53EF;&#x80FD;&#x4F1A;&#x6DFB;&#x52A0;&#x4E24;&#x4E2A;&#x65B0;&#x7684;&#x7ED3;&#x70B9;&#xFF0C;&#x56E0;&#x4E3A;&#x8FD9;&#x65F6;&#x8FD9;&#x4E24;&#x4E2A;&#x7ED3;&#x70B9;&#x8FD8;&#x6CA1;&#x5728;&#x6574;&#x68F5;&#x6811;&#x4E2D;&#x51FA;&#x73B0;&#x3002;&#x5F53;&#x4E00;&#x4E2A;&#x6811;&#x4E0A;&#x7684;&#x65B0;&#x7ED3;&#x70B9;&#x51FA;&#x73B0;&#x65F6;&#xFF0C;&#x5C31;&#x8981;&#x66F4;&#x65B0;&#x6240;&#x6709;&#x8FD9;&#x68F5;&#x6811;&#x4E0A;&#x5DF2;&#x77E5;&#x7ED3;&#x70B9;&#x5230;&#x8FD9;&#x4E2A;&#x7ED3;&#x70B9;&#x7684;&#x8DDD;&#x79BB;&#x3002;</p>
+<p>&#x56E0;&#x4E3A;&#x5206;&#x6210;&#x4E86;&#x4E24;&#x90E8;&#x5206;&#xFF0C;&#x6240;&#x4EE5;&#x76F8;&#x5F53;&#x4E8E;&#x6BCF;&#x4E2A;&#x90E8;&#x5206;&#x90FD;&#x53C8;&#x662F;&#x5DF2;&#x77E5;&#x6240;&#x6709;&#x53F6;&#x5B50;&#x7ED3;&#x70B9;&#x8DDD;&#x79BB;&#x7684;&#x6811;&#x6784;&#x9020;&#x3002;</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PB push_back</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX_N = <span class="number">1010</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"><span class="keyword">int</span> dis[MAX_N][MAX_N], degree[MAX_N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">FindMidpoint</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec, <span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> st, <span class="keyword">int</span> ed)</span> </span>{ <span class="comment">// x + y = len</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; vec.size(); ++i) {</span><br><span class="line">        <span class="keyword">int</span> cur = vec[i];</span><br><span class="line">        <span class="keyword">if</span> (dis[st][cur] == x &amp;&amp; dis[cur][ed] == y) <span class="keyword">return</span> cur;</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">AddNewPoint</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec, <span class="keyword">int</span> p, <span class="keyword">int</span> d)</span> </span>{</span><br><span class="line">    ++m;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; vec.size(); ++i) {</span><br><span class="line">        dis[m][vec[i]] = dis[vec[i]][m] = dis[vec[i]][p] - d;</span><br><span class="line">    }</span><br><span class="line">    degree[m]++;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec)</span> </span>{</span><br><span class="line">    <span class="keyword">if</span> (vec.size() &lt;= <span class="number">1</span>) <span class="keyword">return</span>;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec1, vec2;</span><br><span class="line">    <span class="keyword">int</span> len = <span class="number">0</span>, a, b, size = vec.size();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; ++i) {</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; size; ++j) {</span><br><span class="line">            <span class="keyword">if</span> (dis[vec[i]][vec[j]] &gt; len) {</span><br><span class="line">                len = dis[vec[i]][vec[j]];</span><br><span class="line">                a = vec[i], b = vec[j];</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; ++i) {</span><br><span class="line">        <span class="keyword">if</span> (dis[a][vec[i]] &lt;= dis[b][vec[i]]) vec1.PB(vec[i]);</span><br><span class="line">        <span class="keyword">else</span> vec2.PB(vec[i]);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> x = FindMidpoint(vec, len / <span class="number">2</span>, len - len / <span class="number">2</span>, a, b);</span><br><span class="line">    <span class="keyword">int</span> y = FindMidpoint(vec, len - (len / <span class="number">2</span> + <span class="number">1</span>), len / <span class="number">2</span> + <span class="number">1</span>, b, a);</span><br><span class="line">    <span class="keyword">if</span> (x == <span class="number">-1</span>) AddNewPoint(vec1, b, len - len / <span class="number">2</span>), vec1.PB(m);</span><br><span class="line">    <span class="keyword">else</span> degree[x]++;</span><br><span class="line">    <span class="keyword">if</span> (y == <span class="number">-1</span>) AddNewPoint(vec2, a, len / <span class="number">2</span> + <span class="number">1</span>), vec2.PB(m);</span><br><span class="line">    <span class="keyword">else</span> degree[y]++;</span><br><span class="line"></span><br><span class="line">    solve(vec1); solve(vec2);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="keyword">while</span> (~<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n) &amp;&amp; n) {</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) {</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; ++j) {</span><br><span class="line">                <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;dis[i][j]);</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec, ans;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) vec.PB(i);</span><br><span class="line">        <span class="built_in">memset</span>(degree, <span class="number">0</span>, <span class="keyword">sizeof</span> (degree));</span><br><span class="line">        m = n;</span><br><span class="line">        solve(vec);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = n + <span class="number">1</span>; i &lt;= m; ++i) ans.PB(degree[i]);</span><br><span class="line">        sort(ans.begin(), ans.end());</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; ans.size(); ++i) {</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, ans[i]);</span><br><span class="line">            <span class="keyword">if</span> (i &lt; ans.size() - <span class="number">1</span>) <span class="built_in">printf</span>(<span class="string">&quot; &quot;</span>);</span><br><span class="line">        }</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+    </div>
+  </article>
+
+
+</section>
+    <footer id="footer" role="contentinfo">
+    <div>&copy; 2018 <a href="/">瀚清</a>.
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Designed by <a href="http://rainylog.com" target="_blank">Rainy.</a>
+	</div>
+</footer><!-- end #footer -->
+
+  </div>
+  <script src="/lib/fancybox/dist/jquery.fancybox.min.js"></script>
+
+  <script src="/js/helper.js"></script>
+  <script src="/js/_third-party/gitment.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>UVA 12018 切水果 dp | 瀚清</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="给$n \leq 1000$个水果出现在屏幕上的开始时间和消失时间，可以在任意时刻“切一刀”把出现在屏幕上的水果切掉，只有当切掉的水果个数大于2，才会计分，计分数就是切掉的水果个数。并且每切完一刀，屏幕上的水果都会消失。每个水果可以切的时间是出现和结束时间的闭区间，求最多可以得多少分？">
+<meta name="keywords" content="dp,UVA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UVA 12018 切水果 dp">
+<meta property="og:url" content="http://yoursite.com/2016/11/20/UVA-12018-dp/index.html">
+<meta property="og:site_name" content="瀚清">
+<meta property="og:description" content="给$n \leq 1000$个水果出现在屏幕上的开始时间和消失时间，可以在任意时刻“切一刀”把出现在屏幕上的水果切掉，只有当切掉的水果个数大于2，才会计分，计分数就是切掉的水果个数。并且每切完一刀，屏幕上的水果都会消失。每个水果可以切的时间是出现和结束时间的闭区间，求最多可以得多少分？">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-11-20T05:45:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UVA 12018 切水果 dp">
+<meta name="twitter:description" content="给$n \leq 1000$个水果出现在屏幕上的开始时间和消失时间，可以在任意时刻“切一刀”把出现在屏幕上的水果切掉，只有当切掉的水果个数大于2，才会计分，计分数就是切掉的水果个数。并且每切完一刀，屏幕上的水果都会消失。每个水果可以切的时间是出现和结束时间的闭区间，求最多可以得多少分？">
+  
+    <link rel="alternate" href="/atom.xml" title="瀚清" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/fancybox/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <script src="/lib/jquery/dist/jquery.min.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  
+  
+  
+</head>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="wrapper">
+    <header id="header" class="clearfix">
+	<a id="logo" href="/" title="瀚清">瀚清</a>
+	
+	<nav id="nav-menu" class="clearfix">
+		<form id="search" method="post" action="./" role="search">
+			<input id="search-input" type="text" name="s" class="inputbox" value="搜索" onfocus="if (value =='搜索'){value =''}" onblur="if (value ==''){value='搜索'}">
+		</form>
+		<ul>
+      
+				
+        <li><a class="main-nav-link" href="/">主页</a></li>
+      
+				
+        <li><a class="main-nav-link" href="/archives">归档</a></li>
+      
+		</ul>
+	</nav>
+</header>
+    <section id="main" class="clearfix"><article class="post-detail">
+  <h1 class="post-title"><a href="/">UVA 12018 切水果 dp</a></h1>
+  <ul class="post-meta">
+  <li><i class="fa fa-user"></i> 作者 ramay7</li>
+  <li><i class="fa fa-calendar"></i> 日期 Nov 20</li>
+  <li><i class="fa fa-folder"></i> 分类
+  
+    <a class="article-category-link" href="/categories/ACM/">ACM</a>
+  
+  </li>
+</ul>
+  <div class="post-content">
+      
+      <p>&#x7ED9;$n \leq 1000$&#x4E2A;&#x6C34;&#x679C;&#x51FA;&#x73B0;&#x5728;&#x5C4F;&#x5E55;&#x4E0A;&#x7684;&#x5F00;&#x59CB;&#x65F6;&#x95F4;&#x548C;&#x6D88;&#x5931;&#x65F6;&#x95F4;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x4EFB;&#x610F;&#x65F6;&#x523B;&#x201C;&#x5207;&#x4E00;&#x5200;&#x201D;&#x628A;&#x51FA;&#x73B0;&#x5728;&#x5C4F;&#x5E55;&#x4E0A;&#x7684;&#x6C34;&#x679C;&#x5207;&#x6389;&#xFF0C;&#x53EA;&#x6709;&#x5F53;&#x5207;&#x6389;&#x7684;&#x6C34;&#x679C;&#x4E2A;&#x6570;&#x5927;&#x4E8E;2&#xFF0C;&#x624D;&#x4F1A;&#x8BA1;&#x5206;&#xFF0C;&#x8BA1;&#x5206;&#x6570;&#x5C31;&#x662F;&#x5207;&#x6389;&#x7684;&#x6C34;&#x679C;&#x4E2A;&#x6570;&#x3002;&#x5E76;&#x4E14;&#x6BCF;&#x5207;&#x5B8C;&#x4E00;&#x5200;&#xFF0C;&#x5C4F;&#x5E55;&#x4E0A;&#x7684;&#x6C34;&#x679C;&#x90FD;&#x4F1A;&#x6D88;&#x5931;&#x3002;&#x6BCF;&#x4E2A;&#x6C34;&#x679C;&#x53EF;&#x4EE5;&#x5207;&#x7684;&#x65F6;&#x95F4;&#x662F;&#x51FA;&#x73B0;&#x548C;&#x7ED3;&#x675F;&#x65F6;&#x95F4;&#x7684;&#x95ED;&#x533A;&#x95F4;&#xFF0C;&#x6C42;&#x6700;&#x591A;&#x53EF;&#x4EE5;&#x5F97;&#x591A;&#x5C11;&#x5206;&#xFF1F;<br><a id="more"></a><br>&#x9898;&#x76EE;&#x94FE;&#x63A5;&#xFF1A;<a href="https://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;page=show_problem&amp;problem=3169" target="_blank" rel="noopener">Here</a></p>
+<p>&#x8D2A;&#x5FC3;&#x4E0D;&#x884C;&#x5C31;dp&#x3002;</p>
+<p>&#x5148;&#x628A;&#x6240;&#x6709;&#x65F6;&#x95F4;&#x79BB;&#x6563;&#x5316;&#x3002;&#x7136;&#x540E;&#x628A;&#x65F6;&#x95F4;&#x533A;&#x95F4;&#x6309;&#x7167;&#x5DE6;&#x7AEF;&#x70B9;&#x7B2C;&#x4E00;&#x4F18;&#x5148;&#x7EA7;&#xFF0C;&#x53F3;&#x7AEF;&#x70B9;&#x7B2C;&#x4E8C;&#x4F18;&#x5148;&#x7EA7;&#x6392;&#x5E8F;&#x3002;</p>
+<p>&#x6211;&#x89C9;&#x5F97;&#x5207;&#x6C34;&#x679C;&#x7684;&#x65F6;&#x95F4;&#x90FD;&#x662F;&#x5728;&#x4E00;&#x4E9B;&#x6C34;&#x679C;&#x7684;&#x51FA;&#x73B0;&#x65F6;&#x95F4;&#x6216;&#x8005;&#x7ED3;&#x675F;&#x65F6;&#x95F4;&#x4E0D;&#x4F1A;&#x4F7F;&#x7ED3;&#x679C;&#x66F4;&#x5DEE;&#x3002;&#xFF08;&#x627E;&#x4E0D;&#x5230;&#x53CD;&#x4F8B;&#x554A;&#x3002;&#x3002;&#x3002;&#x3002;&#xFF09;</p>
+<p>&#x7136;&#x540E;&#x4E00;&#x5F00;&#x59CB;&#x662F;&#x60F3;&#x679A;&#x4E3E;&#x5207;&#x6700;&#x540E;&#x4E00;&#x5200;&#x7684;&#x6C34;&#x679C;&#x662F;&#x7B2C;&#x51E0;&#x4E2A;$i$&#xFF0C;&#x518D;&#x679A;&#x4E3E;&#x5207;&#x5012;&#x6570;&#x7B2C;&#x4E8C;&#x5200;&#x7684;&#x6C34;&#x679C;&#x662F;&#x7B2C;&#x51E0;&#x4E2A;$j$&#xFF0C;&#x518D;&#x679A;&#x4E3E;&#x5207;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x8FD9;&#x6837;&#x5B50;&#x662F;$O(n^3)$&#x7684;&#xFF0C;&#x5F53;&#x7136;&#x5B9E;&#x9645;&#x4E0A;&#x53EF;&#x80FD;&#x8FDC;&#x5C0F;&#x4E8E;&#xFF0C;&#x4F46;&#x662F;&#x8FD9;&#x6837;&#x5B50;&#x6211;&#x6CA1;&#x6709;&#x8003;&#x8651;&#x5230;&#x7684;&#x95EE;&#x9898;&#x662F;&#xFF1A;&#x6BCF;&#x5207;&#x5B8C;&#x4E00;&#x5200;&#xFF0C;&#x6240;&#x6709;&#x5C4F;&#x5E55;&#x4E0A;&#x51FA;&#x73B0;&#x7684;&#x6C34;&#x679C;&#x90FD;&#x4F1A;&#x6D88;&#x5931;&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x5207;&#x5012;&#x6570;&#x7B2C;&#x4E8C;&#x5200;&#x65F6;&#xFF0C;&#x6709;&#x53EF;&#x80FD;$[j+1,i]$&#x4E4B;&#x95F4;&#x7684;&#x6C34;&#x679C;&#x4E5F;&#x88AB;&#x5207;&#x6389;&#x4E86;&#xFF0C;GG&#x3002;</p>
+<p>&#x5176;&#x5B9E;&#x5B8C;&#x5168;&#x4E0D;&#x7528;&#x8FD9;&#x4E48;&#x9EBB;&#x70E6;&#xFF0C;&#x76F4;&#x63A5;&#x679A;&#x4E3E;&#x5207;&#x6700;&#x540E;&#x4E00;&#x5200;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x548C;&#x5207;&#x5012;&#x6570;&#x7B2C;&#x4E8C;&#x5200;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x4E24;&#x4E2A;&#x4F4D;&#x7F6E;&#x4E4B;&#x95F4;&#x7684;&#x6C34;&#x679C;&#x53EF;&#x4EE5;&#x88AB;&#x6700;&#x540E;&#x4E00;&#x5200;&#x5207;&#x4E2D;&#x7684;&#x4E2A;&#x6570;&#x600E;&#x4E48;&#x7B97;&#x5462;&#xFF1F;&#x628A;&#x6240;&#x6709;&#x6C34;&#x679C;&#x4ECE;&#x540E;&#x5F80;&#x524D;&#x68C0;&#x67E5;&#xFF0C;&#x5C31;&#x884C;&#x4E86;&#x3002;&#x3002;&#x3002;&#x3002;</p>
+<p>&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#xFF1A;$O(n^2)$<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX_N = <span class="number">1010</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> T, n, cases = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> store[MAX_N * <span class="number">5</span>], pos[MAX_N * <span class="number">5</span>], Max[MAX_N * <span class="number">5</span>];</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Interval</span> {</span></span><br><span class="line">    <span class="keyword">int</span> L, R;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> Interval&amp; rhs) <span class="keyword">const</span> {</span><br><span class="line">        <span class="keyword">return</span> L == rhs.L ? R &lt; rhs.R : L &lt; rhs.L;</span><br><span class="line">    }</span><br><span class="line">} inter[MAX_N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span> </span>{</span><br><span class="line">    sort(store, store + <span class="number">2</span> * n);</span><br><span class="line">    <span class="keyword">int</span> m = unique(store, store + <span class="number">2</span> * n) - store;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) {</span><br><span class="line">        inter[i].L = lower_bound(store, store + m, inter[i].L) - store + <span class="number">1</span>;</span><br><span class="line">        inter[i].R = lower_bound(store, store + m, inter[i].R) - store + <span class="number">1</span>;</span><br><span class="line">    }</span><br><span class="line">    sort(inter + <span class="number">1</span>, inter + n + <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">memset</span>(pos, <span class="number">0</span>, <span class="keyword">sizeof</span> (pos));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= m; ++k) {</span><br><span class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>, ed = n;</span><br><span class="line">        pos[k] = pos[k - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = k - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i) {</span><br><span class="line">            <span class="keyword">while</span> (ed &gt;= <span class="number">1</span> &amp;&amp; inter[ed].L &gt; i) {</span><br><span class="line">                <span class="keyword">if</span> (inter[ed].L &lt;= k &amp;&amp; inter[ed].R &gt;= k) cnt++;</span><br><span class="line">                ed--;</span><br><span class="line">            }</span><br><span class="line">            <span class="keyword">if</span> (cnt &lt;= <span class="number">2</span>) pos[k] = max(pos[k], pos[i]);</span><br><span class="line">            <span class="keyword">else</span> pos[k] = max(pos[k], pos[i] + cnt);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Case #%d: %d\n&quot;</span>, ++cases, pos[m]);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;T);</span><br><span class="line">    <span class="keyword">while</span> (T--) {</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) {</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;inter[i].L, &amp;inter[i].R);</span><br><span class="line">            store[i - <span class="number">1</span>] = inter[i].L;</span><br><span class="line">            store[i + n - <span class="number">1</span>] = inter[i].R;</span><br><span class="line">        }</span><br><span class="line">        solve();</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure></p>
+
+  </div>
+  
+    <div class="tags">
+    <span><i class="fa fa-tags"></i> 标签</span>
+      
+        <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/UVA/">UVA</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/dp/">dp</a></li></ul>
+      
+    </div>
+  
+
+</article>
+
+<!-- Comments -->
+
+<!-- End Comments --></section>
+    <footer id="footer" role="contentinfo">
+    <div>&copy; 2018 <a href="/">瀚清</a>.
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Designed by <a href="http://rainylog.com" target="_blank">Rainy.</a>
+	</div>
+</footer><!-- end #footer -->
+
+  </div>
+  <script src="/lib/fancybox/dist/jquery.fancybox.min.js"></script>
+
+  <script src="/js/helper.js"></script>
+  <script src="/js/_third-party/gitment.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

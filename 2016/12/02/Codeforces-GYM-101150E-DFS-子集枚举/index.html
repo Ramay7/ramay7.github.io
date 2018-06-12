@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Codeforces GYM 101150E DFS+子集枚举 | 瀚清</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="给$s\in [1,6]$个石头的重量，按照类似天平的方式悬挂：保证力矩相等。求在不超过$r\leq 10$长度条件下可以形成的最长长度。">
+<meta name="keywords" content="DFS,Codeforces">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Codeforces GYM 101150E DFS+子集枚举">
+<meta property="og:url" content="http://yoursite.com/2016/12/02/Codeforces-GYM-101150E-DFS-子集枚举/index.html">
+<meta property="og:site_name" content="瀚清">
+<meta property="og:description" content="给$s\in [1,6]$个石头的重量，按照类似天平的方式悬挂：保证力矩相等。求在不超过$r\leq 10$长度条件下可以形成的最长长度。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-12-02T13:11:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Codeforces GYM 101150E DFS+子集枚举">
+<meta name="twitter:description" content="给$s\in [1,6]$个石头的重量，按照类似天平的方式悬挂：保证力矩相等。求在不超过$r\leq 10$长度条件下可以形成的最长长度。">
+  
+    <link rel="alternate" href="/atom.xml" title="瀚清" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/fancybox/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <script src="/lib/jquery/dist/jquery.min.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  
+  
+  
+</head>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="wrapper">
+    <header id="header" class="clearfix">
+	<a id="logo" href="/" title="瀚清">瀚清</a>
+	
+	<nav id="nav-menu" class="clearfix">
+		<form id="search" method="post" action="./" role="search">
+			<input id="search-input" type="text" name="s" class="inputbox" value="搜索" onfocus="if (value =='搜索'){value =''}" onblur="if (value ==''){value='搜索'}">
+		</form>
+		<ul>
+      
+				
+        <li><a class="main-nav-link" href="/">主页</a></li>
+      
+				
+        <li><a class="main-nav-link" href="/archives">归档</a></li>
+      
+		</ul>
+	</nav>
+</header>
+    <section id="main" class="clearfix"><article class="post-detail">
+  <h1 class="post-title"><a href="/">Codeforces GYM 101150E DFS+子集枚举</a></h1>
+  <ul class="post-meta">
+  <li><i class="fa fa-user"></i> 作者 ramay7</li>
+  <li><i class="fa fa-calendar"></i> 日期 Dec 2</li>
+  <li><i class="fa fa-folder"></i> 分类
+  
+    <a class="article-category-link" href="/categories/思无涯/">思无涯</a>
+  
+  </li>
+</ul>
+  <div class="post-content">
+      
+      <p>&#x7ED9;$s\in [1,6]$&#x4E2A;&#x77F3;&#x5934;&#x7684;&#x91CD;&#x91CF;&#xFF0C;&#x6309;&#x7167;&#x7C7B;&#x4F3C;&#x5929;&#x5E73;&#x7684;&#x65B9;&#x5F0F;&#x60AC;&#x6302;&#xFF1A;&#x4FDD;&#x8BC1;&#x529B;&#x77E9;&#x76F8;&#x7B49;&#x3002;&#x6C42;&#x5728;&#x4E0D;&#x8D85;&#x8FC7;$r\leq 10$&#x957F;&#x5EA6;&#x6761;&#x4EF6;&#x4E0B;&#x53EF;&#x4EE5;&#x5F62;&#x6210;&#x7684;&#x6700;&#x957F;&#x957F;&#x5EA6;&#x3002;<br><a id="more"></a><br>&#x9898;&#x76EE;&#x94FE;&#x63A5;&#xFF1A;<a href="http://codeforces.com/gym/101150" target="_blank" rel="noopener">Here</a></p>
+<p>&#x9898;&#x76EE;&#x63CF;&#x8FF0;&#x7684;&#x53EF;&#x80FD;&#x6709;&#x70B9;&#x62BD;&#x8C61;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x770B;<a href="http://vjudge.net/problem/UVA-1354" target="_blank" rel="noopener">UVA 1354</a>&#x3002;&#x3002;&#x3002;&#x3002;</p>
+<p>&#x4ECE;&#x6839;&#x5F00;&#x59CB;<code>dfs</code>&#x679A;&#x4E3E;&#x5DE6;&#x53F3;&#x5B50;&#x6811;&#x9009;&#x62E9;&#x77F3;&#x5934;&#x7684;&#x96C6;&#x5408;&#xFF0C;&#x8FD9;&#x91CC;&#x5C31;&#x6D89;&#x53CA;&#x5230;&#x5B50;&#x96C6;&#x7684;&#x679A;&#x4E3E;&#x6280;&#x5DE7;&#xFF1A;&#x5C0F;&#x767D;&#x4E66;P286&#x3002;&#x8FD9;&#x91CC;&#x4ECB;&#x7ECD;&#x7684;&#x679A;&#x4E3E;$1\sim n$&#x7684;&#x6BCF;&#x4E2A;&#x96C6;&#x5408;$S$&#x7684;&#x6240;&#x6709;&#x5B50;&#x96C6;&#x7684;&#x603B;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x4E3A;&#xFF1A;$O(3^n)$&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x6240;&#x6709;&#x5B50;&#x96C6;&#x7684;&#x4E2A;&#x6570;&#x3002;</p>
+<p>&#x7136;&#x540E;&#x5F53;&#x5DE6;&#x53F3;&#x5B50;&#x6811;&#x7684;&#x77F3;&#x5934;&#x786E;&#x5B9A;&#x4E86;&#x4E4B;&#x540E;&#x5982;&#x4F55;&#x786E;&#x5B9A;&#x6811;&#x7684;&#x5BBD;&#x5EA6;&#x5462;&#xFF1F;&#x8FD8;&#x8981;&#x5BF9;&#x6BCF;&#x4E2A;&#x72B6;&#x6001;&#x8BB0;&#x5F55;&#x6240;&#x6709;&#x53EF;&#x80FD;&#x201C;&#x6446;&#x8BBE;&#x201D;&#x96C6;&#x5408;&#x7684;&#x6700;&#x5927;&#x5DE6;&#x53F3;&#x504F;&#x79FB;&#x91CF;&#xFF0C;&#x7136;&#x540E;<code>dfs</code>&#x7ED3;&#x675F;&#x540E;&#xFF0C;&#x518D;&#x66F4;&#x65B0;&#x5F53;&#x524D;&#x72B6;&#x6001;&#xFF08;&#x5F53;&#x524D;&#x7684;&#x4E00;&#x9897;&#x6574;&#x6811;&#xFF09;&#x3002;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x53F3;&#x5B50;&#x6811;&#x7684;&#x6700;&#x5DE6;&#x7AEF;&#x53EF;&#x80FD;&#x6BD4;&#x5DE6;&#x5B50;&#x6811;&#x7684;&#x6700;&#x5DE6;&#x7AEF;&#x8FD8;&#x8981;&#x504F;&#x5DE6;&#xFF0C;&#x5DE6;&#x5B50;&#x6811;&#x7684;&#x6700;&#x53F3;&#x7AEF;&#x53EF;&#x80FD;&#x6BD4;&#x53F3;&#x5B50;&#x6811;&#x7684;&#x6700;&#x53F3;&#x7AEF;&#x8FD8;&#x8981;&#x504F;&#x53F3;&#x3002;&#x9012;&#x5F52;&#x7ED3;&#x675F;&#x6761;&#x4EF6;&#x662F;&#xFF1A;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x77F3;&#x5934;&#x3002;</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX_N = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span> {</span></span><br><span class="line">    <span class="keyword">double</span> L, R;</span><br><span class="line"></span><br><span class="line">    Node() {}</span><br><span class="line">    Node(<span class="keyword">double</span> _L, <span class="keyword">double</span> _R): L(_L), R(_R) {}</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> T, n, vis[<span class="number">1</span> &lt;&lt; MAX_N];</span><br><span class="line"><span class="keyword">double</span> m, w[MAX_N], sum[<span class="number">1</span> &lt;&lt; MAX_N];</span><br><span class="line"><span class="built_in">vector</span>&lt;Node&gt; vec[<span class="number">1</span> &lt;&lt; MAX_N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> state)</span> </span>{</span><br><span class="line">    <span class="keyword">if</span> (vis[state]) <span class="keyword">return</span>;</span><br><span class="line">    vis[state] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (__builtin_popcount(state) == <span class="number">1</span>) {</span><br><span class="line">        vec[state].push_back(Node(<span class="number">0</span>, <span class="number">0</span>));</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> left = state &amp; (state - <span class="number">1</span>); left &gt; <span class="number">0</span>; left = (left - <span class="number">1</span>) &amp; state) {</span><br><span class="line">        <span class="keyword">int</span> right = state ^ left;</span><br><span class="line">        dfs(left); dfs(right);</span><br><span class="line">        <span class="keyword">double</span> a = sum[right] / (sum[left] + sum[right]);</span><br><span class="line">        <span class="keyword">double</span> b = sum[left] / (sum[left] + sum[right]);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; vec[left].size(); ++i) {</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; vec[right].size(); ++j) {</span><br><span class="line">                <span class="keyword">double</span> L = min(-a + vec[left][i].L, b + vec[right][j].L);</span><br><span class="line">                <span class="keyword">double</span> R = max(-a + vec[left][i].R, b + vec[right][j].R);</span><br><span class="line">                vec[state].push_back(Node(L, R));</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="keyword">int</span> limit = (<span class="number">1</span> &lt;&lt; n) - <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">memset</span>(vis, <span class="number">0</span>, <span class="keyword">sizeof</span> (vis));</span><br><span class="line">    dfs(limit);</span><br><span class="line">    <span class="keyword">double</span> ans = <span class="number">-1.0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; vec[limit].size(); ++i) {</span><br><span class="line">        <span class="keyword">double</span> diff = vec[limit][i].R - vec[limit][i].L;</span><br><span class="line">        <span class="keyword">if</span> (diff &lt; m) ans = max(ans, diff);</span><br><span class="line">    }</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%.10lf\n&quot;</span>, ans);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;T);</span><br><span class="line">    <span class="keyword">while</span> (T--) {</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%lf%d&quot;</span>, &amp;m, &amp;n);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) <span class="built_in">scanf</span>(<span class="string">&quot;%lf&quot;</span>, &amp;w[i]);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="number">1</span> &lt;&lt; n); ++i) {</span><br><span class="line">            sum[i] = <span class="number">0</span>, vec[i].clear();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; ++j) {</span><br><span class="line">                <span class="keyword">if</span> (i &amp; (<span class="number">1</span> &lt;&lt; j)) sum[i] += w[j];</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        solve();</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+  </div>
+  
+    <div class="tags">
+    <span><i class="fa fa-tags"></i> 标签</span>
+      
+        <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/Codeforces/">Codeforces</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/DFS/">DFS</a></li></ul>
+      
+    </div>
+  
+
+</article>
+
+<!-- Comments -->
+
+<!-- End Comments --></section>
+    <footer id="footer" role="contentinfo">
+    <div>&copy; 2018 <a href="/">瀚清</a>.
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Designed by <a href="http://rainylog.com" target="_blank">Rainy.</a>
+	</div>
+</footer><!-- end #footer -->
+
+  </div>
+  <script src="/lib/fancybox/dist/jquery.fancybox.min.js"></script>
+
+  <script src="/js/helper.js"></script>
+  <script src="/js/_third-party/gitment.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

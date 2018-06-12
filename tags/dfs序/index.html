@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>tag: dfs序 | 瀚清</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="瀚清">
+<meta property="og:url" content="http://yoursite.com/tags/dfs序/index.html">
+<meta property="og:site_name" content="瀚清">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="瀚清">
+  
+    <link rel="alternate" href="/atom.xml" title="瀚清" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/fancybox/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <script src="/lib/jquery/dist/jquery.min.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  
+  
+  
+</head>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="wrapper">
+    <header id="header" class="clearfix">
+	<a id="logo" href="/" title="瀚清">瀚清</a>
+	
+	<nav id="nav-menu" class="clearfix">
+		<form id="search" method="post" action="./" role="search">
+			<input id="search-input" type="text" name="s" class="inputbox" value="搜索" onfocus="if (value =='搜索'){value =''}" onblur="if (value ==''){value='搜索'}">
+		</form>
+		<ul>
+      
+				
+        <li><a class="main-nav-link" href="/">主页</a></li>
+      
+				
+        <li><a class="main-nav-link" href="/archives">归档</a></li>
+      
+		</ul>
+	</nav>
+</header>
+    <section id="main" class="clearfix">
+  <article class="post-detail">
+    <h1 class="post-title"><a href="/">Codeforces 396C dfs序+树状数组</a></h1>
+    <ul class="post-meta">
+  <li><i class="fa fa-user"></i> 作者 ramay7</li>
+  <li><i class="fa fa-calendar"></i> 日期 Nov 4</li>
+  <li><i class="fa fa-folder"></i> 分类
+  
+    <a class="article-category-link" href="/categories/思无涯/">思无涯</a>
+  
+  </li>
+</ul>
+    <div class="post-content">
+      <p>&#x7ED9;&#x4E00;&#x4E2A;$n\leq 3*10^5$&#x4E2A;&#x7ED3;&#x70B9;&#xFF0C;&#x6839;&#x4E3A;1&#x7684;&#x6811;&#x3002;&#x521D;&#x59CB;&#x65F6;&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#x7684;&#x503C;&#x5747;&#x4E3A;0&#xFF0C;&#x6709;$Q\leq 3*10^5$&#x79CD;&#x64CD;&#x4F5C;&#xFF1A;</p>
+<ul>
+<li>$1\quad v\quad x\quad  k:$&#x5BF9;&#x4E8E;&#x4EE5;$v$&#x4E3A;&#x6839;&#x7684;&#x5B50;&#x6811;&#xFF0C;&#x5982;&#x679C;&#x7ED3;&#x70B9;$i$&#x5230;$v$&#x7684;&#x8DDD;&#x79BB;&#x4E3A;$dis$&#xFF0C;&#x90A3;&#x4E48;$i$&#x7684;&#x6743;&#x503C;&#x5C06;&#x589E;&#x52A0;$x-dis*k$&#xFF0C;&#x8DDD;&#x79BB;&#x5C31;&#x662F;&#x8DEF;&#x5F84;&#x4E0A;&#x8FB9;&#x7684;&#x6570;&#x91CF;&#xFF0C;$v$&#x7ED3;&#x70B9;&#x7684;&#x6743;&#x503C;&#x5C06;&#x589E;&#x52A0;$x$&#x3002;</li>
+<li>$2\quad v:$&#x67E5;&#x8BE2;$v$&#x7ED3;&#x70B9;&#x7684;&#x6743;&#x503C;</li>
+</ul>
+<p>&#x5BF9;&#x4E8E;&#x6BCF;&#x6B21;&#x67E5;&#x8BE2;&#x8F93;&#x51FA;&#x7B54;&#x6848;&#xFF0C;&#x7ED3;&#x679C;&#x6A21;$1e9+7$&#x3002;<br><a id="more"></a><br>&#x628A;&#x4EE5;$v$&#x4E3A;&#x6839;&#x7684;&#x5B50;&#x6811;&#x7ED3;&#x70B9;&#x8F6C;&#x5316;&#x6210;$dfs$&#x5E8F;&#xFF0C;&#x5E76;&#x4E14;&#x5F97;&#x5230;&#x6BCF;&#x4E2A;&#x7ED3;&#x70B9;&#x7684;&#x6DF1;&#x5EA6;$depth[v]$&#x3002;&#x7136;&#x540E;&#x5BF9;&#x4E8E;&#x6BCF;&#x6B21;&#x7B2C;1&#x79CD;&#x64CD;&#x4F5C;&#xFF0C;&#x4EE5;$v$&#x4E3A;&#x6839;&#x7684;&#x5B50;&#x6811;&#x4E0A;&#x7ED3;&#x70B9;$i$&#x76F8;&#x5F53;&#x4E8E;&#x6743;&#x503C;&#x589E;&#x52A0;&#x4E86;<br>$$<br>x-(depth[i]-depth[v])*k=x+depth[v]*k-depth[i]*k<br>$$<br>&#x4E5F;&#x5C31;&#x662F;&#x5BF9;&#x4E8E;$dfs$&#x5E8F;&#x4E0A;&#x7684;&#x533A;&#x95F4;$[left[v],right[v]]$&#x4E0A;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x7ED3;&#x70B9;$i$&#x90FD;&#x9700;&#x8981;&#x589E;&#x52A0;$x+depth[v]*k$&#xFF0C;&#x7136;&#x540E;&#x51CF;&#x6389;$depth[i]*k$&#xFF0C;&#x628A;&#x52A0;&#x51CF;&#x7684;&#x6743;&#x503C;&#x770B;&#x6210;&#x4E24;&#x9897;&#x6811;&#x72B6;&#x6570;&#x7EC4;&#xFF0C;&#x76F8;&#x5F53;&#x4E8E;&#x533A;&#x95F4;&#x66F4;&#x65B0;&#xFF0C;&#x5355;&#x70B9;&#x67E5;&#x8BE2;&#xFF0C;&#x7EF4;&#x62A4;&#x4E00;&#x4E0B;&#x5373;&#x53EF;&#x3002;</p>
+<p>&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#xFF1A;$O(Q*\log n)$<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX_N = <span class="number">300010</span>;</span><br><span class="line"><span class="keyword">const</span> ll mod = (ll)(<span class="number">1e9</span>) + <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, d = <span class="number">0</span>, Q;</span><br><span class="line"><span class="keyword">int</span> depth[MAX_N], left[MAX_N], right[MAX_N];</span><br><span class="line">ll add[MAX_N], sub[MAX_N];</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; son[MAX_N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> k)</span> </span>{</span><br><span class="line">	left[u] = ++d;</span><br><span class="line">	depth[u] = k;</span><br><span class="line">	<span class="keyword">int</span> size = son[u].size();</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; ++i) {</span><br><span class="line">		dfs(son[u][i], k + <span class="number">1</span>);</span><br><span class="line">	}</span><br><span class="line">	right[u] = d;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">lowbit</span><span class="params">(<span class="keyword">int</span> x)</span> </span>{ <span class="keyword">return</span> x &amp; -x; }</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(ll *bit, <span class="keyword">int</span> x, ll value)</span> </span>{</span><br><span class="line">	value %= mod;</span><br><span class="line">	<span class="keyword">if</span> (value &lt; <span class="number">0</span>) value += mod;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = x; i &lt;= n; i += lowbit(i)) {</span><br><span class="line">		bit[i] += value;</span><br><span class="line">		<span class="keyword">if</span> (bit[i] &gt;= mod) bit[i] -= mod;</span><br><span class="line">	}</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">query</span><span class="params">(ll *bit, <span class="keyword">int</span> x)</span> </span>{</span><br><span class="line">	ll ret = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = x; i &gt; <span class="number">0</span>; i -= lowbit(i)) {</span><br><span class="line">		ret += bit[i];</span><br><span class="line">		<span class="keyword">if</span> (ret &gt;= mod) ret -= mod;</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; ++i) {</span><br><span class="line">		<span class="keyword">int</span> t;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;t);</span><br><span class="line">		son[t].push_back(i);</span><br><span class="line">	}</span><br><span class="line">	dfs(<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;Q);</span><br><span class="line">	<span class="keyword">while</span> (Q--) {</span><br><span class="line">		<span class="keyword">int</span> type, id, x, k;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;type);</span><br><span class="line">		<span class="keyword">if</span> (type == <span class="number">1</span>) {</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>, &amp;id, &amp;x, &amp;k);</span><br><span class="line">			ll value = <span class="number">1l</span>l * depth[id] * k % mod + x;</span><br><span class="line">			update(add, left[id], value);</span><br><span class="line">			update(add, right[id] + <span class="number">1</span>, -value);</span><br><span class="line">			update(sub, left[id], k);</span><br><span class="line">			update(sub, right[id] + <span class="number">1</span>, -k);</span><br><span class="line">		} <span class="keyword">else</span> {</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;id);</span><br><span class="line">			ll ans = (query(add, left[id]) - query(sub, left[id]) * depth[id] % mod) % mod;</span><br><span class="line">			<span class="keyword">if</span> (ans &lt; <span class="number">0</span>) ans += mod;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, ans);</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure></p>
+
+    </div>
+  </article>
+
+
+</section>
+    <footer id="footer" role="contentinfo">
+    <div>&copy; 2018 <a href="/">瀚清</a>.
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Designed by <a href="http://rainylog.com" target="_blank">Rainy.</a>
+	</div>
+</footer><!-- end #footer -->
+
+  </div>
+  <script src="/lib/fancybox/dist/jquery.fancybox.min.js"></script>
+
+  <script src="/js/helper.js"></script>
+  <script src="/js/_third-party/gitment.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

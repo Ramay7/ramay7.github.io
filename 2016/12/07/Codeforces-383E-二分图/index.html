@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Codeforces 383E 二分图 | 瀚清</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="有$n\leq 10^5$对男生和女生围成一圈，坐在$2*n$个位置上，给出每对男生和女生的位置，然后要给每个人安排一个数字，数字非1即2，并且每对男生和女生的数字不能相同，即：两个人一个是1，另一个必须是2.然后还要保证连续的三个人的数字不能完全相同，求出一种合法的安排方案，如果不存在输出-1.">
+<meta name="keywords" content="Codeforces,二分图">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Codeforces 383E 二分图">
+<meta property="og:url" content="http://yoursite.com/2016/12/07/Codeforces-383E-二分图/index.html">
+<meta property="og:site_name" content="瀚清">
+<meta property="og:description" content="有$n\leq 10^5$对男生和女生围成一圈，坐在$2*n$个位置上，给出每对男生和女生的位置，然后要给每个人安排一个数字，数字非1即2，并且每对男生和女生的数字不能相同，即：两个人一个是1，另一个必须是2.然后还要保证连续的三个人的数字不能完全相同，求出一种合法的安排方案，如果不存在输出-1.">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-12-07T06:26:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Codeforces 383E 二分图">
+<meta name="twitter:description" content="有$n\leq 10^5$对男生和女生围成一圈，坐在$2*n$个位置上，给出每对男生和女生的位置，然后要给每个人安排一个数字，数字非1即2，并且每对男生和女生的数字不能相同，即：两个人一个是1，另一个必须是2.然后还要保证连续的三个人的数字不能完全相同，求出一种合法的安排方案，如果不存在输出-1.">
+  
+    <link rel="alternate" href="/atom.xml" title="瀚清" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+  <link rel="stylesheet" href="/lib/fancybox/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <script src="/lib/jquery/dist/jquery.min.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+  
+  
+  
+</head>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="wrapper">
+    <header id="header" class="clearfix">
+	<a id="logo" href="/" title="瀚清">瀚清</a>
+	
+	<nav id="nav-menu" class="clearfix">
+		<form id="search" method="post" action="./" role="search">
+			<input id="search-input" type="text" name="s" class="inputbox" value="搜索" onfocus="if (value =='搜索'){value =''}" onblur="if (value ==''){value='搜索'}">
+		</form>
+		<ul>
+      
+				
+        <li><a class="main-nav-link" href="/">主页</a></li>
+      
+				
+        <li><a class="main-nav-link" href="/archives">归档</a></li>
+      
+		</ul>
+	</nav>
+</header>
+    <section id="main" class="clearfix"><article class="post-detail">
+  <h1 class="post-title"><a href="/">Codeforces 383E 二分图</a></h1>
+  <ul class="post-meta">
+  <li><i class="fa fa-user"></i> 作者 ramay7</li>
+  <li><i class="fa fa-calendar"></i> 日期 Dec 7</li>
+  <li><i class="fa fa-folder"></i> 分类
+  
+    <a class="article-category-link" href="/categories/思无涯/">思无涯</a>
+  
+  </li>
+</ul>
+  <div class="post-content">
+      
+      <p>&#x6709;$n\leq 10^5$&#x5BF9;&#x7537;&#x751F;&#x548C;&#x5973;&#x751F;&#x56F4;&#x6210;&#x4E00;&#x5708;&#xFF0C;&#x5750;&#x5728;$2*n$&#x4E2A;&#x4F4D;&#x7F6E;&#x4E0A;&#xFF0C;&#x7ED9;&#x51FA;&#x6BCF;&#x5BF9;&#x7537;&#x751F;&#x548C;&#x5973;&#x751F;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x7136;&#x540E;&#x8981;&#x7ED9;&#x6BCF;&#x4E2A;&#x4EBA;&#x5B89;&#x6392;&#x4E00;&#x4E2A;&#x6570;&#x5B57;&#xFF0C;&#x6570;&#x5B57;&#x975E;1&#x5373;2&#xFF0C;&#x5E76;&#x4E14;&#x6BCF;&#x5BF9;&#x7537;&#x751F;&#x548C;&#x5973;&#x751F;&#x7684;&#x6570;&#x5B57;&#x4E0D;&#x80FD;&#x76F8;&#x540C;&#xFF0C;&#x5373;&#xFF1A;&#x4E24;&#x4E2A;&#x4EBA;&#x4E00;&#x4E2A;&#x662F;1&#xFF0C;&#x53E6;&#x4E00;&#x4E2A;&#x5FC5;&#x987B;&#x662F;2.&#x7136;&#x540E;&#x8FD8;&#x8981;&#x4FDD;&#x8BC1;&#x8FDE;&#x7EED;&#x7684;&#x4E09;&#x4E2A;&#x4EBA;&#x7684;&#x6570;&#x5B57;&#x4E0D;&#x80FD;&#x5B8C;&#x5168;&#x76F8;&#x540C;&#xFF0C;&#x6C42;&#x51FA;&#x4E00;&#x79CD;&#x5408;&#x6CD5;&#x7684;&#x5B89;&#x6392;&#x65B9;&#x6848;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x5B58;&#x5728;&#x8F93;&#x51FA;-1.<br><a id="more"></a><br>&#x4ECA;&#x5929;<del> gkp&#x8001;&#x5E08;&#x4E0D;&#x5728;&#x72B6;&#x6001; </del>&#x3002;&#x81EA;&#x5DF1;&#x53C8;&#x8FC7;&#x4E8E;&#x6FC0;&#x52A8;&#xFF0C;B&#x9898;&#x88AB;fst&#xFF0C;GG&#x3002;</p>
+<p>&#x9898;&#x76EE;&#x94FE;&#x63A5;&#xFF1A;<a href="http://codeforces.com/contest/742/problem/E" target="_blank" rel="noopener">Here</a></p>
+<p>&#x5148;&#x628A;&#x6BCF;&#x5BF9;&#x7537;&#x5973;&#x7684;&#x4F4D;&#x7F6E;&#x5EFA;&#x65E0;&#x5411;&#x8FB9;&#xFF0C;&#x7136;&#x540E;&#x5BF9;&#x6240;&#x6709;&#x7684;$i*2$&#x548C;$i*2-1$&#x4F4D;&#x7F6E;&#x5EFA;&#x65E0;&#x5411;&#x8FB9;&#xFF0C;<strong>&#x53EF;&#x4EE5;&#x53D1;&#x73B0;&#x56FE;&#x4E2D;&#x65E0;&#x5947;&#x6570;&#x73AF;</strong>&#xFF0C;&#x56E0;&#x6B64;&#x8FD9;&#x4E2A;&#x56FE;&#x662F;&#x4E8C;&#x5206;&#x56FE;&#xFF0C;&#x76F4;&#x63A5;dfs&#x67D3;&#x8272;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#x3002;&#x3002;&#x3002;<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX_N = <span class="number">200010</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> fi first</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> se second</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mp make_pair</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pb push_back</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line">pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; data[MAX_N];</span><br><span class="line"><span class="keyword">int</span> vis[MAX_N], ans[MAX_N];</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; edge[MAX_N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> d)</span> </span>{</span><br><span class="line">    ans[u] = d, vis[u] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; edge[u].size(); ++i) {</span><br><span class="line">        <span class="keyword">if</span> (vis[edge[u][i]]) <span class="keyword">continue</span>;</span><br><span class="line">        dfs(edge[u][i], d ^ <span class="number">1</span>);</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="keyword">while</span> (~<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n)) {</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">2</span> * n; ++i) edge[i].clear();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) {</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;data[i].fi, &amp;data[i].se);</span><br><span class="line">            edge[data[i].fi].pb(data[i].se);</span><br><span class="line">            edge[data[i].se].pb(data[i].fi);</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) {</span><br><span class="line">            edge[i * <span class="number">2</span>].pb(i * <span class="number">2</span> - <span class="number">1</span>);</span><br><span class="line">            edge[i * <span class="number">2</span> - <span class="number">1</span>].pb(i * <span class="number">2</span>);</span><br><span class="line">        }</span><br><span class="line">        <span class="built_in">memset</span>(vis, <span class="number">0</span>, <span class="keyword">sizeof</span> (vis));</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">2</span> * n; ++i) {</span><br><span class="line">            <span class="keyword">if</span> (!vis[i]) dfs(i, <span class="number">0</span>);</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) {</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d %d\n&quot;</span>, ans[data[i].fi] + <span class="number">1</span>, ans[data[i].se] + <span class="number">1</span>);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure></p>
+
+  </div>
+  
+    <div class="tags">
+    <span><i class="fa fa-tags"></i> 标签</span>
+      
+        <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/Codeforces/">Codeforces</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/二分图/">二分图</a></li></ul>
+      
+    </div>
+  
+
+</article>
+
+<!-- Comments -->
+
+<!-- End Comments --></section>
+    <footer id="footer" role="contentinfo">
+    <div>&copy; 2018 <a href="/">瀚清</a>.
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Designed by <a href="http://rainylog.com" target="_blank">Rainy.</a>
+	</div>
+</footer><!-- end #footer -->
+
+  </div>
+  <script src="/lib/fancybox/dist/jquery.fancybox.min.js"></script>
+
+  <script src="/js/helper.js"></script>
+  <script src="/js/_third-party/gitment.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>
