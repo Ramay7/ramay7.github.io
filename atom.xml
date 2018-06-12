@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-11-04T07:10:20.000Z</updated>
+  <updated>2018-06-12T13:46:24.852Z</updated>
   <id>http://yoursite.com/</id>
   
   <generator uri="http://hexo.io/">Hexo</generator>
@@ -15,7 +15,7 @@
     <link href="http://yoursite.com/2016/11/04/%E5%9B%9B%E8%BE%B9%E5%BD%A2%E4%B8%8D%E7%AD%89%E5%BC%8F%E4%BC%98%E5%8C%96/"/>
     <id>http://yoursite.com/2016/11/04/四边形不等式优化/</id>
     <published>2016-11-04T07:05:43.000Z</published>
-    <updated>2016-11-04T07:10:20.000Z</updated>
+    <updated>2018-06-12T13:46:24.852Z</updated>
     
     <content type="html"><![CDATA[<p>&#x5047;&#x5982;&#x5BF9;&#x4E8E;$i &lt; j$&#xFF0C;&#x6709;&#xFF1A;<br>$$w(i,j)+w(i+1,j+1)\leq w(i+1,j)+w(i,j+1)$$<br>&#x79F0;&#x51FD;&#x6570;$w$&#x6EE1;&#x8DB3;&#x56DB;&#x8FB9;&#x5F62;&#x4E0D;&#x7B49;&#x5F0F;&#x3002;<br><a id="more"></a><br>&#x5C06;&#x4E0D;&#x7B49;&#x5F0F;&#x53D8;&#x5F62;&#x5F97;&#xFF1A;<br>$$<br>w(i+1,j+1)- w(i+1,j)\leq w(i,j+1) - w(i,j)<br>$$<br>&#x90A3;&#x4E48;&#x8BC1;&#x660E;&#x51FD;&#x6570;$w$&#x662F;&#x5426;&#x6EE1;&#x8DB3;&#x56DB;&#x8FB9;&#x5F62;&#x4E0D;&#x7B49;&#x5F0F;&#xFF0C;&#x5373;&#x8BC1;&#x660E;&#xFF1A;<br>&#x5F53;$j$&#x56FA;&#x5B9A;&#x4E0D;&#x53D8;&#x65F6;&#x662F;&#x5426;&#x6709;&#xFF1A;$w(i,j+1)-w(i,j)$&#x968F;$i$&#x975E;&#x9012;&#x589E;&#x3002;</p>
 <ul>
@@ -46,7 +46,7 @@
     
     </summary>
     
-      <category term="齐东语" scheme="http://yoursite.com/categories/%E9%BD%90%E4%B8%9C%E8%AF%AD/"/>
+      <category term="ACM" scheme="http://yoursite.com/categories/ACM/"/>
     
     
       <category term="ACM-ICPC-Template" scheme="http://yoursite.com/tags/ACM-ICPC-Template/"/>
