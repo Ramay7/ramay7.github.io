@@ -82,7 +82,7 @@
 
 
 <script>
-  window.config = {"title":"Yong-Nan Zhu","subtitle":null,"description":"","author":null,"language":"en","timezone":null,"url":"http://yoursite.com","root":"/","permalink":":year/:month/:day/:title/","permalink_defaults":{},"source_dir":"source","public_dir":"public","tag_dir":"tags","archive_dir":"archives","category_dir":"categories","code_dir":"downloads/code","i18n_dir":":lang","skip_render":null,"new_post_name":":title.md","default_layout":"post","titlecase":false,"external_link":true,"filename_case":0,"render_drafts":false,"post_asset_folder":false,"relative_link":false,"future":true,"highlight":{"enable":true,"auto_detect":false,"line_number":true,"tab_replace":null},"default_category":"uncategorized","category_map":null,"tag_map":null,"date_format":"YYYY-MM-DD","time_format":"HH:mm:ss","per_page":10,"pagination_dir":"page","theme":"even","deploy":{"type":"git","repository":"ssh://git@github.com/Ramay7/ramay7.github.io.git","branch":"master"},"ignore":[],"describption":null,"toc":true,"archive_generator":{"per_page":10,"yearly":true,"monthly":true,"daily":false},"category_generator":{"per_page":10},"feed":{"type":"atom","limit":20,"hub":"","content":true,"path":"atom.xml"},"index_generator":{"per_page":10,"order_by":"-date"},"sitemap":{"path":"sitemap.xml"},"tag_generator":{"per_page":10},"marked":{"gfm":true,"pedantic":false,"sanitize":false,"tables":true,"breaks":true,"smartLists":true,"smartypants":true},"server":{"port":4000,"log":false,"ip":"0.0.0.0","compress":false,"header":true},"since":2017,"favicon":"/favicon.ico","rss":"default","menu":{"Home":"/","Archives":"/archives/","Tags":"/tags","Resources":"/resources","About":"/about"},"color":"Default","fancybox":true,"pjax":true,"copyright":{"enable":false,"license":"<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nc/4.0/\" target=\"_blank\">知识共享署名-非商业性使用 4.0 国际许可协议</a>"},"reward":{"enable":false,"qrCode":{"wechat":null,"alipay":null}},"social":{"email":"zhuynan17@gmail.com","stack-overflow":null,"twitter":null,"facebook":"https://www.facebook.com/zhuyongnan","linkedin":"https://www.linkedin.com/in/yong-nan-zhu-289175143/","google":null,"github":"https://github.com/ramay7","weibo":"https://weibo.com/2768098853/profile?topnav=1&wvr=6","zhihu":"https://www.zhihu.com/people/ramay7","douban":null,"pocket":null,"tumblr":null,"instagram":null},"leancloud":{"app_id":null,"app_key":null},"baidu_analytics":null,"baidu_verification":null,"google_analytics":null,"google_verification":null,"disqus_shortname":"zhuynan","changyan":{"appid":null,"appkey":null},"livere_datauid":null,"version":"2.9.0"};
+  window.config = {"title":"Yong-Nan Zhu","subtitle":null,"description":"","author":null,"language":"en","timezone":null,"url":"http://yoursite.com","root":"/","permalink":":year/:month/:day/:title/","permalink_defaults":{},"source_dir":"source","public_dir":"public","tag_dir":"tags","archive_dir":"archives","category_dir":"categories","code_dir":"downloads/code","i18n_dir":":lang","skip_render":null,"new_post_name":":title.md","default_layout":"post","titlecase":false,"external_link":true,"filename_case":0,"render_drafts":false,"post_asset_folder":false,"relative_link":false,"future":true,"highlight":{"enable":true,"auto_detect":false,"line_number":true,"tab_replace":null,"first_line_number":"always1"},"default_category":"uncategorized","category_map":null,"tag_map":null,"date_format":"YYYY-MM-DD","time_format":"HH:mm:ss","per_page":10,"pagination_dir":"page","theme":"even","deploy":{"type":"git","repository":"ssh://git@github.com/Ramay7/ramay7.github.io.git","branch":"master"},"ignore":[],"describption":null,"toc":true,"archive_generator":{"per_page":10,"yearly":true,"monthly":true,"daily":false},"category_generator":{"per_page":10},"feed":{"type":"atom","limit":20,"hub":"","content":true,"path":"atom.xml"},"index_generator":{"per_page":10,"order_by":"-date"},"sitemap":{"path":"sitemap.xml"},"tag_generator":{"per_page":10},"marked":{"gfm":true,"pedantic":false,"sanitize":false,"tables":true,"breaks":true,"smartLists":true,"smartypants":true},"server":{"port":4000,"log":false,"ip":"0.0.0.0","compress":false,"header":true},"since":2017,"favicon":"/favicon.ico","rss":"default","menu":{"Home":"/","Archives":"/archives/","Tags":"/tags","Resources":"/resources","About":"/about"},"color":"Default","fancybox":true,"pjax":true,"copyright":{"enable":false,"license":"<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nc/4.0/\" target=\"_blank\">知识共享署名-非商业性使用 4.0 国际许可协议</a>"},"reward":{"enable":false,"qrCode":{"wechat":null,"alipay":null}},"social":{"email":"zhuynan17@gmail.com","stack-overflow":null,"twitter":null,"facebook":"https://www.facebook.com/zhuyongnan","linkedin":"https://www.linkedin.com/in/yong-nan-zhu-289175143/","google":null,"github":"https://github.com/ramay7","weibo":"https://weibo.com/2768098853/profile?topnav=1&wvr=6","zhihu":"https://www.zhihu.com/people/ramay7","douban":null,"pocket":null,"tumblr":null,"instagram":null},"leancloud":{"app_id":null,"app_key":null},"baidu_analytics":null,"baidu_verification":null,"google_analytics":null,"google_verification":null,"disqus_shortname":"zhuynan","changyan":{"appid":null,"appkey":null},"livere_datauid":null,"version":"2.9.0"};
 </script>
 
     <title> Yong-Nan Zhu </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
@@ -249,6 +249,210 @@
           <p><a href="https://en.wikipedia.org/wiki/Eight_queens_puzzle" target="_blank" rel="noopener">Eight queens puzzle</a> is a well-known problem. It can be solved by common depth-first backtracking algorithm. However, we can use bit manipulation skills to make the algorithm more efficient. In the following code, <code>row</code>, <code>md</code> and <code>cd</code> reference to the restrictions about <code>row</code>, <code>main diagonal</code> and <code>counter diagonal</code> respectively if we enumerate from 0 column to $(N-1)$ column. Specificialy, <code>row</code> represents all the selected rows. And if we more from the current column to the next column from left to right, namely 0 to $N-1$, the rows <code>md</code> selected on the main diagonal changed to $md &lt;&lt; 1$ when it shows in bit level.  Similarly, the rows <code>cd</code> selected on the counter diagonal changed to $cd &gt;&gt; 1$. Below the code is the accurate runtime on my machine.<br>
           <div class="read-more">
             <a href="/2018/06/13/N-Queens/" class="read-more-link">Read more..</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/05/03/World-CodeSprint-10/">World CodeSprint 10</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-05-03
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/ACM/">ACM</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>It took me nearly seven hours to solve <a href="https://www.hackerrank.com/contests/world-codesprint-10/challenges" target="_blank" rel="noopener">the 6/7 problems</a>. Some useful ideas can be found among them.<br>
+          <div class="read-more">
+            <a href="/2017/05/03/World-CodeSprint-10/" class="read-more-link">Read more..</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/05/02/HackerRank-19-What-Are-the-Odds-Nim-Game/">HackerRank 19 What Are the Odds?  Nim Game</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-05-02
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/ACM/">ACM</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>The problem <a href="https://www.hackerrank.com/contests/hourrank-19/challenges/what-are-the-odds" target="_blank" rel="noopener">What are the odds?</a> is a very easy problem actually as long as you have basic knowledge about <a href="https://en.wikipedia.org/wiki/Nim" target="_blank" rel="noopener">Nim Game</a>. Sadly, it still took me about half an hour to get accepted due to a little mistake caused by careless reading and comprehension. I just thought about it as what I thought about regardless of the problem discription, and this is what I am good at. :(<br>
+          <div class="read-more">
+            <a href="/2017/05/02/HackerRank-19-What-Are-the-Odds-Nim-Game/" class="read-more-link">Read more..</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/05/01/April-Circuits-17/">April Circuits'17</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-05-01
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/ACM/">ACM</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p><a href="https://www.hackerearth.com/challenge/competitive/april-circuits-17/problems/" target="_blank" rel="noopener">April Circuits’17</a><br>
+          <div class="read-more">
+            <a href="/2017/05/01/April-Circuits-17/" class="read-more-link">Read more..</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/01/18/2017-SUDA-ACM-ICPC-Team-Winter-Training-Day6/">2017 SUDA ACM-ICPC Team Winter Training Day6</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-01-18
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/ACM/">ACM</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p><a href="/pdf/2017Day6.pdf">PDF下载</a><br>
+          <div class="read-more">
+            <a href="/2017/01/18/2017-SUDA-ACM-ICPC-Team-Winter-Training-Day6/" class="read-more-link">Read more..</a>
           </div>
         
       
