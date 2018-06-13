@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/resources/index.html</loc>
+    
+    <lastmod>2018-06-13T17:11:37.767Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/05/01/April-Circuits-17/</loc>
     
     <lastmod>2018-06-13T17:06:01.789Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>http://yoursite.com/2017/01/18/2017-SUDA-ACM-ICPC-Team-Winter-Training-Day6/</loc>
     
     <lastmod>2018-06-13T17:05:45.971Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/resources/index.html</loc>
-    
-    <lastmod>2018-06-13T17:00:44.380Z</lastmod>
     
   </url>
   
