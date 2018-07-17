@@ -17,8 +17,12 @@
 
 
 
+  <meta name="description" content="Use uniform distribution to generate standard normal distribution"/>
 
 
+
+
+  <meta name="keywords" content="statistics, Yong-Nan Zhu" />
 
 
 
@@ -38,7 +42,7 @@
 
 
 
-<link rel="canonical" href="http://yoursite.com/tags/Convex-Hull/"/>
+<link rel="canonical" href="http://yoursite.com/2018/07/17/Use-uniform-distribution-to-generate-standard-normal-distribution/"/>
 
 
 
@@ -85,11 +89,7 @@
   window.config = {"title":"Yong-Nan Zhu","subtitle":null,"description":"","author":null,"language":"en","timezone":null,"url":"http://yoursite.com","root":"/","permalink":":year/:month/:day/:title/","permalink_defaults":{},"source_dir":"source","public_dir":"public","tag_dir":"tags","archive_dir":"archives","category_dir":"categories","code_dir":"downloads/code","i18n_dir":":lang","skip_render":null,"new_post_name":":title.md","default_layout":"post","titlecase":false,"external_link":true,"filename_case":0,"render_drafts":false,"post_asset_folder":false,"relative_link":false,"future":true,"highlight":{"enable":true,"auto_detect":false,"line_number":true,"tab_replace":null,"first_line_number":"always1"},"default_category":"uncategorized","category_map":null,"tag_map":null,"date_format":"YYYY-MM-DD","time_format":"HH:mm:ss","per_page":10,"pagination_dir":"page","theme":"even","deploy":{"type":"git","repository":"ssh://git@github.com/Ramay7/ramay7.github.io.git","branch":"master"},"ignore":[],"describption":null,"toc":true,"archive_generator":{"per_page":10,"yearly":true,"monthly":true,"daily":false},"feed":{"type":"atom","limit":20,"hub":"","content":true,"path":"atom.xml"},"category_generator":{"per_page":10},"index_generator":{"per_page":10,"order_by":"-date"},"sitemap":{"path":"sitemap.xml"},"tag_generator":{"per_page":10},"marked":{"gfm":true,"pedantic":false,"sanitize":false,"tables":true,"breaks":true,"smartLists":true,"smartypants":true},"server":{"port":4000,"log":false,"ip":"0.0.0.0","compress":false,"header":true},"since":2017,"favicon":"/favicon.ico","rss":"default","menu":{"Home":"/","Archives":"/archives/","Tags":"/tags","Resources":"/resources","About":"/about"},"color":"Default","fancybox":true,"pjax":true,"copyright":{"enable":false,"license":"<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nc/4.0/\" target=\"_blank\">知识共享署名-非商业性使用 4.0 国际许可协议</a>"},"reward":{"enable":false,"qrCode":{"wechat":null,"alipay":null}},"social":{"email":"zhuynan17@gmail.com","stack-overflow":null,"twitter":null,"facebook":"https://www.facebook.com/zhuyongnan","linkedin":"https://www.linkedin.com/in/yong-nan-zhu-289175143/","google":null,"github":"https://github.com/ramay7","weibo":"https://weibo.com/2768098853/profile?topnav=1&wvr=6","zhihu":"https://www.zhihu.com/people/ramay7","douban":null,"pocket":null,"tumblr":null,"instagram":null},"leancloud":{"app_id":null,"app_key":null},"baidu_analytics":null,"baidu_verification":null,"google_analytics":null,"google_verification":null,"disqus_shortname":"zhuynan","changyan":{"appid":null,"appkey":null},"livere_datauid":null,"version":"2.9.0"};
 </script>
 
-    <title>
-  
-    Convex Hull · Yong-Nan Zhu
-  
-</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <title> Use uniform distribution to generate standard normal distribution - Yong-Nan Zhu </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -219,43 +219,98 @@
           <div id="content" class="content">
             
   
-  <section id="archive" class="archive">
-    
-      
-        <div class="archive-title tag">
-          <h2 class="archive-name">Convex Hull</h2>
-        </div>
-      
-    
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Use uniform distribution to generate standard normal distribution
+        
+      </h1>
 
-    
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            2017-05-03
-          
+      <div class="post-meta">
+        <span class="post-time">
+          2018-07-17
         </span>
-        <span class="archive-post-title">
-          <a href="/2017/05/03/World-CodeSprint-10/" class="archive-post-link">
-            World CodeSprint 10
-          </a>
-        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/math/">math</a>
+            
+          </div>
+        
+        
       </div>
-    
-  </section>
+    </header>
 
-  
-  <nav class="pagination">
     
+    
+
+
+    <div class="post-content">
+      
+        <p>As we all know, if $(x, y)$ is a pair of independent random variables that conform to the standard normal distribution, the joint probability density function can be formulated as:<br>$$ f(x, y) = \frac{1}{2\pi}e^{-\frac{x^2 + y^2}{2}}$$<br><a id="more"></a></p>
+<p>Let&#x2019;s set: $x = R\cos \theta, y = R \sin \theta$, the probability function of $R$ is:<br>$$P(R\leq r) = \int_{0}^{2\pi} \int_{0}^{r} \frac{1}{2\pi}e^{-\frac{-u^2}{2}} u du d\theta = \int_{0}^{r} e^{-\frac{u^2}{2}}u du = 1 - e^{-\frac{r^2}{2}}$$</p>
+<p>We define $F_{R}(r) = P(R\leq r) = 1 - e^{-\frac{r^2}{2}}$, and set $F_{R}(r) = Z$, $R$ is obtained as the following:<br>$$R = F_{R}^{-1} (Z) = \sqrt{-2 \ln (1-Z)}$$<br>Note that $Z \in [0, 1] \rightarrow 1 - Z \in [0, 1]$.</p>
+<p>Finally, we can replace $1-Z$ and $\theta$ with $U_1$ and $2\pi U_2$ where $U_1 \sim U(0, 1)$ and $U_2 \sim (0, 1)$ ($U_(a, b)$ represents uniform distribution range from $a$ to $b$). $U_1$ and $U_2$ are independant and conform to uniform distribution, $(x, y)$ can be formulated in the following way:<br>$$x = R\cos \theta = \sqrt{-2\ln U_1}\cos(2\pi U_2), y = R\sin \theta = \sqrt{-2\ln U_2}\sin(2\pi U_1)$$</p>
+<p>Actually, this is a specialization of following conclusion:</p>
+<blockquote>
+<p>The random number from any common distribution for which we know cumulative distribution function can be generated by a known uniform distribution.</p>
+</blockquote>
+
+      
+    </div>
+
+    
+      
+      
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/statistics/">statistics</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2018/06/13/N-Queens/">
+        <span class="next-text nav-default">N Queens</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
     
   </nav>
 
+      </footer>
+    
+
+  </article>
 
 
           </div>
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
       </main>
@@ -357,9 +412,9 @@
   
   <script type="text/javascript">
     var disqus_config = function () {
-        this.page.url = '';
-        this.page.identifier = 'tags/Convex-Hull/index.html';
-        this.page.title = '';
+        this.page.url = 'http://yoursite.com/2018/07/17/Use-uniform-distribution-to-generate-standard-normal-distribution/';
+        this.page.identifier = '2018/07/17/Use-uniform-distribution-to-generate-standard-normal-distribution/';
+        this.page.title = 'Use uniform distribution to generate standard normal distribution';
     };
     (function() {
     var d = document, s = d.createElement('script');
@@ -410,7 +465,24 @@
   
 
 
-    <script type="text/javascript" src="/js/src/even.js?v=2.9.0"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <script type="text/javascript" src="/js/src/even.js?v=2.9.0"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
   </body>
 </html>
