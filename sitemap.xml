@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/resources/index.html</loc>
+    
+    <lastmod>2018-10-16T07:19:25.637Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2018/07/17/Use-uniform-distribution-to-generate-standard-normal-distribution/</loc>
     
     <lastmod>2018-07-17T08:44:41.198Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>http://yoursite.com/2018/06/13/N-Queens/</loc>
     
     <lastmod>2018-07-17T07:49:31.114Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/resources/index.html</loc>
-    
-    <lastmod>2018-06-13T17:12:56.883Z</lastmod>
     
   </url>
   
